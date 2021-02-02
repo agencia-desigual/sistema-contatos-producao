@@ -1,13 +1,9 @@
 <?php
 
 $pluginsAutoLoad = [
-    "jquery" => [
-        "js" => ["jquery-3.4.1.min"],
-        "css" => null
-    ],
-//    "bootstrap-grid" => [
-//        "js" => null,
-//        "css" => ["bootstrap-grid.min"]
+//    "jquery" => [
+//        "js" => ["jquery-3.4.1.min"],
+//        "css" => null
 //    ],
     "bootstrap" => [
         "js" => ["js/bootstrap.min","js/popper.min"],
@@ -24,6 +20,10 @@ $pluginsAutoLoad = [
     "mascara" => [
         "js" => ["mascara"],
         "css" => null,
+    ],
+    "alertify" => [
+        "js" => ["js/alertify"],
+        "css" => ["css/alertify"]
     ],
     "dropify" => [
         "js" => ["js/dropify.min"],

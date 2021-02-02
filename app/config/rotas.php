@@ -1,9 +1,7 @@
 <?php
 
-// Erro 404
-$Rotas->onError("404", function (){
-   echo "Erro - 404";
-});
+// Rota de Error 404
+$Rotas->onError("404", "Principal::error");
 
 
 
@@ -46,3 +44,21 @@ $Rotas->onGroup("api-modelo","GET","get/{p}","get");
 $Rotas->onGroup("api-modelo","POST","insert","insert");
 $Rotas->onGroup("api-modelo","PUT","update/{p}","update");
 $Rotas->onGroup("api-modelo","DELETE","delete/{p}","delete");
+
+
+
+/** ============================================================ *
+ * SISTEMA ===================================================== */
+
+
+
+
+/** ============================================================ *
+ * SITE ======================================================== */
+
+// Login e Sair
+$Rotas->on("GET","login","Principal::login");
+$Rotas->on("GET","sair","Principal::sair");
+
+// Página inicial
+$Rotas->on("GET","","Principal::index");
