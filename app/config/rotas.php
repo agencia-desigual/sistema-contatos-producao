@@ -5,11 +5,14 @@ $Rotas->onError("404", function (){
    echo "Erro - 404";
 });
 
-// -- Seta os grupos
-//$Rotas->group("Principal","api","Principal");
 
-// -- Rotas de Grupos
-//$Rotas->onGroup("Principal","GET","a","index");
+/** ============================================================ *
+ * API ========================================================= */
 
-// -- Rotas sem grupo
-$Rotas->on("GET","","Principal::index");
+// Usuario
+$Rotas->group("api-usuario","api/usuario","Api\Usuario");
+$Rotas->onGroup("api-usuario","GET","get","getAll");
+$Rotas->onGroup("api-usuario","GET","get/{p}","get");
+$Rotas->onGroup("api-usuario","POST","insert","insert");
+$Rotas->onGroup("api-usuario","PUT","update/{p}","update");
+$Rotas->onGroup("api-usuario","DELETE","delete/{p}","delete");

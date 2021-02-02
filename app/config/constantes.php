@@ -2,6 +2,7 @@
 
 // Nome do App
 define("SITE_NOME", "Nome do Site");
+define("NUM_PAG", 24);
 
 
 /**
