@@ -8,7 +8,6 @@ CREATE TABLE usuario(
   PRIMARY KEY (id_usuario)
 );
 
-
 CREATE TABLE token(
     id_token INT NOT NULL AUTO_INCREMENT,
     id_usuario INT NOT NULL,
@@ -27,20 +26,6 @@ CREATE TABLE categoria(
     PRIMARY KEY (id_categoria)
 );
 
-
-CREATE TABLE atuacao (
-    id_atuacao INT NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(150) NOT NULL,
-    PRIMARY KEY (id_atuacao)
-);
-
-CREATE TABLE etnia (
-    id_etnia INT NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(150) NOT NULL,
-    PRIMARY KEY (id_etnia)
-);
-
-
 CREATE TABLE fornecedor (
     id_fornecedor INT NOT NULL AUTO_INCREMENT,
     id_categoria INT NOT NULL,
@@ -52,24 +37,23 @@ CREATE TABLE fornecedor (
     FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
 );
 
-
 CREATE TABLE modelo(
     id_modelo INT NOT NULL AUTO_INCREMENT,
-    id_atuacao INT NOT NULL,
-    id_etnia INT NOT NULL,
     nome VARCHAR(150) NOT NULL,
     cpf VARCHAR(100) NULL DEFAULT NULL,
     dataNascimento DATE NOT NULL,
     sexo ENUM('masculino', 'feminino') NOT NULL,
+    atuacao TEXT NULL DEFAULT NULL,
+    etnia TEXT NULL DEFAULT NULL,
     manequim VARCHAR(50) NULL DEFAULT NULL,
     altura VARCHAR(50) NULL DEFAULT NULL,
     calcado VARCHAR(50) NULL DEFAULT NULL,
     telefone TEXT NULL DEFAULT NULL,
     estado VARCHAR(3) NOT NULL,
     cidade VARCHAR(150) NOT NULL,
-    PRIMARY KEY (id_modelo),
-    FOREIGN KEY (id_atuacao) REFERENCES atuacao(id_atuacao),
-    FOREIGN KEY (id_etnia) REFERENCES etnia(id_etnia)
+    canal ENUM('site', 'sistema') NOT NULL DEFAULT 'sistema',
+    cadastro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id_modelo)
 );
 
 CREATE TABLE foto(

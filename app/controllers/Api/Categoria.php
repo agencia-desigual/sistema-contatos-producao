@@ -4,128 +4,41 @@
 namespace Controller\Api;
 
 // Importações
-use Helper\Apoio;
+use Model\Fornecedor;
 use Sistema\Controller;
 use Sistema\Helper\Input;
 use Sistema\Helper\Seguranca;
 
-// Inicia a Classe
-class Usuario extends Controller
+// Inicia a classe
+class Categoria extends Controller
 {
     // Objetos
-    private $objModelUsuario;
-    private $objHelperApoio;
+    private $objModelCategoria;
+    private $objModelFornecedor;
     private $objSeguranca;
 
-
-    // Inicia o contrutor
+    // Método construtor
     public function __construct()
     {
         // Chama o pai
         parent::__construct();
 
         // Instancia os objetos
-        $this->objModelUsuario = new \Model\Usuario();
-        $this->objHelperApoio = new Apoio();
+        $this->objModelCategoria = new \Model\Categoria();
+        $this->objModelFornecedor = new Fornecedor();
         $this->objSeguranca = new Seguranca();
 
     } // End >> fun::__construct()
 
 
-
     /**
-     * Método responsável por realizar o login de um
-     * determinado usuário.
-     * ------------------------------------------------
-     * @method POST
-     * @url api/usuario/login
-     */
-    public function login()
-    {
-        // Variaveis
-        $dados = null;
-        $usuario = null;
-        $token = null;
-        $dadosLogin = null;
-
-        // Recupera os dados de login
-        $dadosLogin = $this->objSeguranca->getDadosLogin();
-
-        // Criptografa a senha
-        $dadosLogin["senha"] = md5($dadosLogin["senha"]);
-
-        // Monta a query
-        $where = [
-            "email" => $dadosLogin["usuario"],
-            "senha" => $dadosLogin["senha"]
-        ];
-
-        // Busca o usuário
-        $usuario = $this->objModelUsuario
-            ->get($where)
-            ->fetch(\PDO::FETCH_OBJ);
-
-        // Verifica se encontrou o usuário
-        if(!empty($usuario))
-        {
-            // Verifica se o usuáiro está ativo
-            if($usuario->status == true)
-            {
-                // Gera um token
-                $token = $this->objSeguranca->getToken($usuario->id_usuario);
-
-                // Verifica se gerou um token
-                if($token != false)
-                {
-                    // Remove a senha
-                    unset($usuario->senha);
-
-                    // Array de retorno
-                    $dados = [
-                        "tipo" => true,
-                        "code" => 200,
-                        "mensagem" => "Sucesso! Aguarde...",
-                        "objeto" => [
-                            "usuario" => $usuario,
-                            "token" => $token
-                        ]
-                    ];
-                }
-                else
-                {
-                    // Msg
-                    $dados = ["mensagem" => "Ocorreu um erro ao gerar o token"];
-
-                } // Error >> Erro ao gerar token
-            }
-            else
-            {
-                // Msg
-                $dados = ["mensagem" => "Sua conta foi desativada. Entre em contato com o suporte para saber o motivo."];
-
-            } // Error >> Usuário desativado
-        }
-        else
-        {
-            // Msg
-            $dados = ["mensagem" => "E-mail ou senha informados estão incorretos."];
-        } // Error - Dados incorretos
-
-        // Retorno
-        $this->api($dados);
-
-    } // End >> fun::login()
-
-
-
-    /**
-     * Método responsável por retornar um usuario especifico e suas
+     * Método responsável por retornar um categoria especifico e suas
      * FK, deve ser informado via paramento o ID do item.
      * -----------------------------------------------------------------
      * @param $id
      * -----------------------------------------------------------------
      * @author igorcacerez
-     * @url api/usuario/get/[ID]
+     * @url api/categoria/get/[ID]
      * @method GET
      */
     public function get($id)
@@ -139,10 +52,10 @@ class Usuario extends Controller
         $where = null;
 
         // where
-        $where = ["id_usuario" => $id];
+        $where = ["id_categoria" => $id];
 
         // Busca o objeto
-        $objeto = $this->objModelUsuario->get($where);
+        $objeto = $this->objModelCategoria->get($where);
 
         // Fetch
         $total = $objeto->rowCount();
@@ -172,14 +85,13 @@ class Usuario extends Controller
     } // End >> fun::get()
 
 
-
     /**
-     * Método responsável por retornar todos os usuários cadastrados
+     * Método responsável por retornar todos os categorias cadastrados
      * no sistema, podendo informar a ordem, limit e where.
      * -----------------------------------------------------------------
      * @author igorcacerez
      * -----------------------------------------------------------------
-     * @url api/usuario/get
+     * @url api/categoria/get
      * @method GET
      */
     public function getAll()
@@ -217,25 +129,14 @@ class Usuario extends Controller
 
 
         // Busca o Objeto com páginacao
-        $objeto = $this->objModelUsuario
+        $objeto = $this->objModelCategoria
             ->get($where, $ordem, ($inicio . "," . $limite))
             ->fetchAll(\PDO::FETCH_OBJ);
 
         // Total
-        $total = $this->objModelUsuario
+        $total = $this->objModelCategoria
             ->get($where)
             ->rowCount();
-
-        // Verifica se retornou algo
-        if(!empty($objeto))
-        {
-            // Percorro os objetos
-            foreach ($objeto as $obj)
-            {
-                // Remove informações
-                unset($obj->senha);
-            }
-        }
 
         // Monta o array de retorno
         $dados = [
@@ -255,12 +156,11 @@ class Usuario extends Controller
     } // End >> fun::getAll()
 
 
-
     /**
-     * Método responsável por inserir um determinado usuário
+     * Método responsável por inserir um determinado categoria
      * no sistema.
      * -----------------------------------------------------------------
-     * @url api/usuario/insert
+     * @url api/categoria/insert
      * @method POST
      */
     public function insert()
@@ -278,37 +178,32 @@ class Usuario extends Controller
         $post = $_POST;
 
         // Verifica se informou os dados obrigatórios
-        if(!empty($post["nome"]) &&
-            !empty($post["email"]) &&
-            !empty($post["senha"]))
+        if(!empty($post["nome"]))
         {
-            // Criptografa a senha
-            $post["senha"] = md5($post["senha"]);
-
             // Insere o objeto
-            $obj = $this->objModelUsuario
+            $obj = $this->objModelCategoria
                 ->insert($post);
 
             // Verifica se inseriu
             if(!empty($obj))
             {
                 // Busca o objeto inserido
-                $obj = $this->objModelUsuario
-                    ->get(["id_usuario" => $obj])
+                $obj = $this->objModelCategoria
+                    ->get(["id_categoria" => $obj])
                     ->fetch(\PDO::FETCH_OBJ);
 
                 // Retorno
                 $dados = [
                     "tipo" => true,
                     "code" => 200,
-                    "mensagem" => "Item inserido com sucesso.",
+                    "mensagem" => "Categoria inserida com sucesso.",
                     "objeto" => $obj
                 ];
             }
             else
             {
                 // Msg
-                $dados = ["mensagem" => "Ocorreu um erro ao adicionar."];
+                $dados = ["mensagem" => "Ocorreu um erro ao adicionar a categoria."];
             } // Error >> Ocorreu um erro ao adicionar.
         }
         else
@@ -323,14 +218,13 @@ class Usuario extends Controller
     } // End >> fun::insert()
 
 
-
     /**
      * Método responsável por alterar as informações de um determinado
-     * usuário cadastrado no sistema.
+     * categoria cadastrado no sistema.
      * -------------------------------------------------------------------
-     * @param $id [Id do usuário a ser alterado]
+     * @param $id [Id do categoria a ser alterado]
      * -------------------------------------------------------------------
-     * @url api/usuario/update/[ID]
+     * @url api/categoria/update/[ID]
      * @method PUT
      */
     public function update($id)
@@ -349,11 +243,11 @@ class Usuario extends Controller
         $put = $objInput->put();
 
         // Remove os dados n alteraveis
-        unset($put["id_usuario"]);
+        unset($put["id_categoria"]);
 
         // Busca o objeto atual
-        $obj = $this->objModelUsuario
-            ->get(["id_usuario" => $id])
+        $obj = $this->objModelCategoria
+            ->get(["id_categoria" => $id])
             ->fetch(\PDO::FETCH_OBJ);
 
         // Verifiva se encontrou
@@ -362,40 +256,12 @@ class Usuario extends Controller
             // Verifica se está alterando alguma coisa
             if(!empty($put))
             {
-                // Verifica se informou uma senha
-                if(!empty($put["senha"]))
-                {
-                    // Verifica se vai alterar a senha
-                    if(md5($put["senha"]) != $obj->senha && !empty($put["re_senha"]))
-                    {
-                        // Verifica se a senhas conferem
-                        if($put["senha"] == $put["re_senha"])
-                        {
-                            // Criptografa
-                            $put["senha"] = md5($put["senha"]);
-                        }
-                        else
-                        {
-                            // Api
-                            $this->api(["mensagem" => "Senhas informadas não conferem."]);
-                        } // Error >> Senhas informadas não conferem.
-                    }
-                    else
-                    {
-                        // Remove a senha
-                        unset($put["senha"]);
-                    }
-                }
-
-                // Remove o repete senha
-                unset($put["re_senha"]);
-
                 // Altera as informações
-                if($this->objModelUsuario->update($put, ["id_usuario" => $id]) != false)
+                if($this->objModelCategoria->update($put, ["id_categoria" => $id]) != false)
                 {
                     // Busca o objeto alterado
-                    $objAlterado = $this->objModelUsuario
-                        ->get(["id_usuario" => $id])
+                    $objAlterado = $this->objModelCategoria
+                        ->get(["id_categoria" => $id])
                         ->fetch(\PDO::FETCH_OBJ);
 
                     // Retorno
@@ -433,14 +299,13 @@ class Usuario extends Controller
     } // End >> fun::update()
 
 
-
     /**
-     * Método responsável por deletar um determinado usuário cadastrado
-     * no sistema, desde que não seja ele mesmo.
+     * Método responsável por deletar um determinado categoria cadastrado
+     * no sistema, desde que não possua fks
      * -------------------------------------------------------------------
-     * @param $id [Id do usuário a ser deletado]
+     * @param $id [Id do categoria a ser deletado]
      * -------------------------------------------------------------------
-     * @url api/usuario/delete/[ID]
+     * @url api/categoria/delete/[ID]
      * @method DELETE
      */
     public function delete($id)
@@ -453,40 +318,49 @@ class Usuario extends Controller
         // Seguranca
         $usuario = $this->objSeguranca->security();
 
-        // Verifica se o usuário não é o mesmo
-        if($usuario->id_usuario != $id)
-        {
-            // Busca o objeto a ser deletado
-            $obj = $this->objModelUsuario
-                ->get(["id_usuario" => $id])
-                ->fetch(\PDO::FETCH_OBJ);
+        // Busca o objeto a ser deletado
+        $obj = $this->objModelCategoria
+            ->get(["id_categoria" => $id])
+            ->fetch(\PDO::FETCH_OBJ);
 
-            // Deleta o usuário
-            if($this->objModelUsuario->delete(["id_usuario" => $id]) != false)
+        // Verifica se existe
+        if(!empty($obj))
+        {
+            // Verifica se possui FKs
+            if($this->objModelFornecedor->get(["id_categoria" => $id])->rowCount() == 0)
             {
-                // Retorno
-                $dados = [
-                    "tipo" => true,
-                    "code" => 200,
-                    "mensagem" => "O usuário foi deletado.",
-                    "objeto" => $obj
-                ];
+                // Deleta o usuário
+                if($this->objModelCategoria->delete(["id_categoria" => $id]) != false)
+                {
+                    // Retorno
+                    $dados = [
+                        "tipo" => true,
+                        "code" => 200,
+                        "mensagem" => "A categoria foi deletada.",
+                        "objeto" => $obj
+                    ];
+                }
+                else
+                {
+                    // Msg
+                    $dados = ["mensagem" => 'Ocorre um erro ao tentar deletar.'];
+                } // Error >> Ocorre um erro ao tentar deletar.
             }
             else
             {
                 // Msg
-                $dados = ["mensagem" => 'Ocorre um erro ao tentar deletar.'];
-            } // Error >> Ocorre um erro ao tentar deletar.
+                $dados = ["mensagem" => "Impossível deletar, existem fornecedores cadastrados nesta categoria."];
+            } // Error >> Impossível deletar, existem fornecedores cadastrados nesta categoria.
         }
         else
         {
             // Msg
-            $dados = ["mensagem" => "Você não pode se ato deletar."];
-        } // Error >> Você não pode se ato deletar.
+            $dados = ["mensagem" => "A categoria informada não existe ou já foi deletada."];
+        } // Error >> A categoria informada não existe ou já foi deletada.
 
         // Api
         $this->api($dados);
 
     } // End >> fun::delete()
 
-} // End >> Class::Usuario
+} // End >> Class::Categoria
