@@ -4,41 +4,40 @@
 namespace Controller\Api;
 
 // Importações
-use Model\Fornecedor;
 use Sistema\Controller;
 use Sistema\Helper\Input;
 use Sistema\Helper\Seguranca;
 
-// Inicia a classe
-class Categoria extends Controller
+// Inicia a Classe
+class Fornecedor extends Controller
 {
     // Objetos
-    private $objModelCategoria;
     private $objModelFornecedor;
+    private $objModelCategoria;
     private $objSeguranca;
 
     // Método construtor
     public function __construct()
     {
-        // Chama o pai
+        // Instancia o construtor do pai
         parent::__construct();
 
         // Instancia os objetos
+        $this->objModelFornecedor = new \Model\Fornecedor();
         $this->objModelCategoria = new \Model\Categoria();
-        $this->objModelFornecedor = new Fornecedor();
         $this->objSeguranca = new Seguranca();
 
     } // End >> fun::__construct()
 
 
     /**
-     * Método responsável por retornar um categoria especifico e suas
+     * Método responsável por retornar um fornecedor especifico e suas
      * FK, deve ser informado via paramento o ID do item.
      * -----------------------------------------------------------------
      * @param $id
      * -----------------------------------------------------------------
      * @author igorcacerez
-     * @url api/categoria/get/[ID]
+     * @url api/fornecedor/get/[ID]
      * @method GET
      */
     public function get($id)
@@ -52,14 +51,23 @@ class Categoria extends Controller
         $where = null;
 
         // where
-        $where = ["id_categoria" => $id];
+        $where = ["id_fornecedor" => $id];
 
         // Busca o objeto
-        $objeto = $this->objModelCategoria->get($where);
+        $objeto = $this->objModelFornecedor->get($where);
 
         // Fetch
         $total = $objeto->rowCount();
         $objeto = $objeto->fetch(\PDO::FETCH_OBJ);
+
+        // Verifica se retornou algo
+        if(!empty($objeto))
+        {
+            // Busca a categoria
+            $objeto->categoria = $this->objModelCategoria
+                ->get(["id_categoria" => $objeto->id_categoria])
+                ->fetch(\PDO::FETCH_OBJ);
+        }
 
         // Monta o array de retorno
         $dados = [
@@ -78,12 +86,12 @@ class Categoria extends Controller
 
 
     /**
-     * Método responsável por retornar todos os categorias cadastrados
+     * Método responsável por retornar todos os fornecedores cadastrados
      * no sistema, podendo informar a ordem, limit e where.
      * -----------------------------------------------------------------
      * @author igorcacerez
      * -----------------------------------------------------------------
-     * @url api/categoria/get
+     * @url api/fornecedor/get
      * @method GET
      */
     public function getAll()
@@ -121,14 +129,27 @@ class Categoria extends Controller
 
 
         // Busca o Objeto com páginacao
-        $objeto = $this->objModelCategoria
+        $objeto = $this->objModelFornecedor
             ->get($where, $ordem, ($inicio . "," . $limite))
             ->fetchAll(\PDO::FETCH_OBJ);
 
         // Total
-        $total = $this->objModelCategoria
+        $total = $this->objModelFornecedor
             ->get($where)
             ->rowCount();
+
+        // Verifica se retornou algo
+        if(!empty($objeto))
+        {
+            // Percorre os objetos retornados
+            foreach ($objeto as $obj)
+            {
+                // Busca a categoria
+                $obj->categoria = $this->objModelCategoria
+                    ->get(["id_categoria" => $obj->id_categoria])
+                    ->fetch(\PDO::FETCH_OBJ);
+            }
+        }
 
         // Monta o array de retorno
         $dados = [
@@ -170,33 +191,50 @@ class Categoria extends Controller
         $post = $_POST;
 
         // Verifica se informou os dados obrigatórios
-        if(!empty($post["nome"]))
+        if(!empty($post["nome"]) &&
+            !empty($post["id_categoria"]) &&
+            !empty($post["telefone"]) &&
+            !empty($post["cidade"]))
         {
-            // Insere o objeto
-            $obj = $this->objModelCategoria
-                ->insert($post);
+            // Busca a categoria
+            $categoria = $this->objModelCategoria
+                ->get(["id_categoria" => $post["id_categoria"]])
+                ->fetch(\PDO::FETCH_OBJ);
 
-            // Verifica se inseriu
-            if(!empty($obj))
+            // Verifica se a categoria existe
+            if(!empty($categoria))
             {
-                // Busca o objeto inserido
-                $obj = $this->objModelCategoria
-                    ->get(["id_categoria" => $obj])
-                    ->fetch(\PDO::FETCH_OBJ);
+                // Insere o objeto
+                $obj = $this->objModelFornecedor
+                    ->insert($post);
 
-                // Retorno
-                $dados = [
-                    "tipo" => true,
-                    "code" => 200,
-                    "mensagem" => "Categoria inserida com sucesso.",
-                    "objeto" => $obj
-                ];
+                // Verifica se inseriu
+                if(!empty($obj))
+                {
+                    // Busca o objeto inserido
+                    $obj = $this->objModelFornecedor
+                        ->get(["id_fornecedor" => $obj])
+                        ->fetch(\PDO::FETCH_OBJ);
+
+                    // Retorno
+                    $dados = [
+                        "tipo" => true,
+                        "code" => 200,
+                        "mensagem" => "Fornecedor inserido com sucesso.",
+                        "objeto" => $obj
+                    ];
+                }
+                else
+                {
+                    // Msg
+                    $dados = ["mensagem" => "Ocorreu um erro ao adicionar o fornecedor."];
+                } // Error >> Ocorreu um erro ao adicionar.
             }
             else
             {
                 // Msg
-                $dados = ["mensagem" => "Ocorreu um erro ao adicionar a categoria."];
-            } // Error >> Ocorreu um erro ao adicionar.
+                $dados = ["mensagem" => "A categoria informada não existe ou foi deletada."];
+            } // Error >> A categoria informada não existe ou foi deletada.
         }
         else
         {
@@ -212,11 +250,11 @@ class Categoria extends Controller
 
     /**
      * Método responsável por alterar as informações de um determinado
-     * categoria cadastrado no sistema.
+     * fornecedor cadastrado no sistema.
      * -------------------------------------------------------------------
-     * @param $id [Id do categoria a ser alterado]
+     * @param $id [Id do fornecedor a ser alterado]
      * -------------------------------------------------------------------
-     * @url api/categoria/update/[ID]
+     * @url api/fornecedor/update/[ID]
      * @method PUT
      */
     public function update($id)
@@ -235,11 +273,11 @@ class Categoria extends Controller
         $put = $objInput->put();
 
         // Remove os dados n alteraveis
-        unset($put["id_categoria"]);
+        unset($put["id_fornecedor"]);
 
         // Busca o objeto atual
-        $obj = $this->objModelCategoria
-            ->get(["id_categoria" => $id])
+        $obj = $this->objModelFornecedor
+            ->get(["id_fornecedor" => $id])
             ->fetch(\PDO::FETCH_OBJ);
 
         // Verifiva se encontrou
@@ -252,8 +290,8 @@ class Categoria extends Controller
                 if($this->objModelCategoria->update($put, ["id_categoria" => $id]) != false)
                 {
                     // Busca o objeto alterado
-                    $objAlterado = $this->objModelCategoria
-                        ->get(["id_categoria" => $id])
+                    $objAlterado = $this->objModelFornecedor
+                        ->get(["id_fornecedor" => $id])
                         ->fetch(\PDO::FETCH_OBJ);
 
                     // Retorno
@@ -292,12 +330,12 @@ class Categoria extends Controller
 
 
     /**
-     * Método responsável por deletar um determinado categoria cadastrado
-     * no sistema, desde que não possua fks
+     * Método responsável por deletar um determinado fornecedor cadastrado
+     * no sistema.
      * -------------------------------------------------------------------
-     * @param $id [Id do categoria a ser deletado]
+     * @param $id [Id do fornecedor a ser deletado]
      * -------------------------------------------------------------------
-     * @url api/categoria/delete/[ID]
+     * @url api/fornecedor/delete/[ID]
      * @method DELETE
      */
     public function delete($id)
@@ -311,48 +349,39 @@ class Categoria extends Controller
         $usuario = $this->objSeguranca->security();
 
         // Busca o objeto a ser deletado
-        $obj = $this->objModelCategoria
-            ->get(["id_categoria" => $id])
+        $obj = $this->objModelFornecedor
+            ->get(["id_fornecedor" => $id])
             ->fetch(\PDO::FETCH_OBJ);
 
         // Verifica se existe
         if(!empty($obj))
         {
-            // Verifica se possui FKs
-            if($this->objModelFornecedor->get(["id_categoria" => $id])->rowCount() == 0)
+            // Deleta o usuário
+            if($this->objModelFornecedor->delete(["id_fornecedor" => $id]) != false)
             {
-                // Deleta o usuário
-                if($this->objModelCategoria->delete(["id_categoria" => $id]) != false)
-                {
-                    // Retorno
-                    $dados = [
-                        "tipo" => true,
-                        "code" => 200,
-                        "mensagem" => "A categoria foi deletada.",
-                        "objeto" => $obj
-                    ];
-                }
-                else
-                {
-                    // Msg
-                    $dados = ["mensagem" => 'Ocorre um erro ao tentar deletar.'];
-                } // Error >> Ocorre um erro ao tentar deletar.
+                // Retorno
+                $dados = [
+                    "tipo" => true,
+                    "code" => 200,
+                    "mensagem" => "O fornecedor foi deletado com sucesso.",
+                    "objeto" => $obj
+                ];
             }
             else
             {
                 // Msg
-                $dados = ["mensagem" => "Impossível deletar, existem fornecedores cadastrados nesta categoria."];
-            } // Error >> Impossível deletar, existem fornecedores cadastrados nesta categoria.
+                $dados = ["mensagem" => 'Ocorre um erro ao tentar deletar.'];
+            } // Error >> Ocorre um erro ao tentar deletar.
         }
         else
         {
             // Msg
-            $dados = ["mensagem" => "A categoria informada não existe ou já foi deletada."];
-        } // Error >> A categoria informada não existe ou já foi deletada.
+            $dados = ["mensagem" => "O fornecedor informado não existe ou já foi deletado."];
+        } // Error >> O fornecedor informado não existe ou já foi deletado.
 
         // Api
         $this->api($dados);
 
     } // End >> fun::delete()
 
-} // End >> Class::Categoria
+} // End >> Class::Fornecedor

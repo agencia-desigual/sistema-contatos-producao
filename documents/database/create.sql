@@ -29,6 +29,7 @@ CREATE TABLE categoria(
 CREATE TABLE fornecedor (
     id_fornecedor INT NOT NULL AUTO_INCREMENT,
     id_categoria INT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
     observacao TEXT NULL DEFAULT NULL,
     telefone TEXT NULL DEFAULT NULL,
     cidade VARCHAR(150) NULL DEFAULT NULL,

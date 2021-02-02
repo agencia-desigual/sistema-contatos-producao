@@ -29,3 +29,12 @@ $Rotas->onGroup("api-categoria","POST","insert","insert");
 $Rotas->onGroup("api-categoria","PUT","update/{p}","update");
 $Rotas->onGroup("api-categoria","DELETE","delete/{p}","delete");
 
+
+// Fornecedor
+$Rotas->group("api-fornecedor","api/fornecedor","Api\Fornecedor");
+$Rotas->onGroup("api-fornecedor","GET","get","getAll");
+$Rotas->onGroup("api-fornecedor","GET","get/{p}","get");
+$Rotas->onGroup("api-fornecedor","POST","insert","insert");
+$Rotas->onGroup("api-fornecedor","PUT","update/{p}","update");
+$Rotas->onGroup("api-fornecedor","DELETE","delete/{p}","delete");
+
