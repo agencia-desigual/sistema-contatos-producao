@@ -178,265 +178,265 @@
     <!-- END ROW -->
 
 
-<div style="display: none !important;">
-    <div class="row d-none">
-        <div class="col-xl-8">
-            <div class="card m-b-30">
-                <div class="card-body">
+    <div style="display: none !important;">
+        <div class="row d-none">
+            <div class="col-xl-8">
+                <div class="card m-b-30">
+                    <div class="card-body">
 
-                    <h4 class="mt-0 header-title mb-4">Area Chart</h4>
+                        <h4 class="mt-0 header-title mb-4">Area Chart</h4>
 
-                    <div id="morris-area-example" class="morris-charts morris-chart-height"></div>
+                        <div id="morris-area-example" class="morris-charts morris-chart-height"></div>
 
+                    </div>
                 </div>
             </div>
+            <!-- end col -->
+
+            <!-- end col -->
         </div>
-        <!-- end col -->
+        <div class="row d-none">
+            <div class="col-xl-4">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <h4 class="mt-0 header-title mb-4">Friends Suggestions</h4>
+                        <div class="friends-suggestions">
+                            <a href="#" class="friends-suggestions-list">
+                                <div class="border-bottom position-relative">
+                                    <div class="float-left mb-0 mr-3">
+                                        <img src="assets/images/users/user-2.jpg" alt="" class="rounded-circle thumb-md">
+                                    </div>
+                                    <div class="suggestion-icon float-right mt-2 pt-1">
+                                        <i class="mdi mdi-plus"></i>
+                                    </div>
 
-        <!-- end col -->
-    </div>
-    <div class="row d-none">
-        <div class="col-xl-4">
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <h4 class="mt-0 header-title mb-4">Friends Suggestions</h4>
-                    <div class="friends-suggestions">
-                        <a href="#" class="friends-suggestions-list">
-                            <div class="border-bottom position-relative">
-                                <div class="float-left mb-0 mr-3">
-                                    <img src="assets/images/users/user-2.jpg" alt="" class="rounded-circle thumb-md">
+                                    <div class="desc">
+                                        <h5 class="font-14 mb-1 pt-2">Ralph Ramirez</h5>
+                                        <p class="text-muted">3 Friend suggest</p>
+                                    </div>
                                 </div>
-                                <div class="suggestion-icon float-right mt-2 pt-1">
-                                    <i class="mdi mdi-plus"></i>
-                                </div>
+                            </a>
 
-                                <div class="desc">
-                                    <h5 class="font-14 mb-1 pt-2">Ralph Ramirez</h5>
-                                    <p class="text-muted">3 Friend suggest</p>
-                                </div>
-                            </div>
-                        </a>
+                            <a href="#" class="friends-suggestions-list">
+                                <div class="border-bottom position-relative">
+                                    <div class="float-left mb-0 mr-3">
+                                        <img src="assets/images/users/user-3.jpg" alt="" class="rounded-circle thumb-md">
+                                    </div>
+                                    <div class="suggestion-icon float-right mt-2 pt-1">
+                                        <i class="mdi mdi-plus"></i>
+                                    </div>
 
-                        <a href="#" class="friends-suggestions-list">
-                            <div class="border-bottom position-relative">
-                                <div class="float-left mb-0 mr-3">
-                                    <img src="assets/images/users/user-3.jpg" alt="" class="rounded-circle thumb-md">
+                                    <div class="desc">
+                                        <h5 class="font-14 mb-1 pt-2">Patrick Beeler</h5>
+                                        <p class="text-muted">17 Friend suggest</p>
+                                    </div>
                                 </div>
-                                <div class="suggestion-icon float-right mt-2 pt-1">
-                                    <i class="mdi mdi-plus"></i>
-                                </div>
+                            </a>
 
-                                <div class="desc">
-                                    <h5 class="font-14 mb-1 pt-2">Patrick Beeler</h5>
-                                    <p class="text-muted">17 Friend suggest</p>
-                                </div>
-                            </div>
-                        </a>
+                            <a href="#" class="friends-suggestions-list">
+                                <div class="border-bottom position-relative">
+                                    <div class="float-left mb-0 mr-3">
+                                        <img src="assets/images/users/user-4.jpg" alt="" class="rounded-circle thumb-md">
+                                    </div>
+                                    <div class="suggestion-icon float-right mt-2 pt-1">
+                                        <i class="mdi mdi-plus"></i>
+                                    </div>
 
-                        <a href="#" class="friends-suggestions-list">
-                            <div class="border-bottom position-relative">
-                                <div class="float-left mb-0 mr-3">
-                                    <img src="assets/images/users/user-4.jpg" alt="" class="rounded-circle thumb-md">
+                                    <div class="desc">
+                                        <h5 class="font-14 mb-1 pt-2">Victor Zamora</h5>
+                                        <p class="text-muted">12 Friend suggest</p>
+                                    </div>
                                 </div>
-                                <div class="suggestion-icon float-right mt-2 pt-1">
-                                    <i class="mdi mdi-plus"></i>
-                                </div>
+                            </a>
 
-                                <div class="desc">
-                                    <h5 class="font-14 mb-1 pt-2">Victor Zamora</h5>
-                                    <p class="text-muted">12 Friend suggest</p>
-                                </div>
-                            </div>
-                        </a>
+                            <a href="#" class="friends-suggestions-list">
+                                <div class="border-bottom position-relative">
+                                    <div class="float-left mb-0 mr-3">
+                                        <img src="assets/images/users/user-5.jpg" alt="" class="rounded-circle thumb-md">
+                                    </div>
+                                    <div class="suggestion-icon float-right mt-2 pt-1">
+                                        <i class="mdi mdi-plus"></i>
+                                    </div>
 
-                        <a href="#" class="friends-suggestions-list">
-                            <div class="border-bottom position-relative">
-                                <div class="float-left mb-0 mr-3">
-                                    <img src="assets/images/users/user-5.jpg" alt="" class="rounded-circle thumb-md">
+                                    <div class="desc">
+                                        <h5 class="font-14 mb-1 pt-2">Bryan Lacy</h5>
+                                        <p class="text-muted">18 Friend suggest</p>
+                                    </div>
                                 </div>
-                                <div class="suggestion-icon float-right mt-2 pt-1">
-                                    <i class="mdi mdi-plus"></i>
-                                </div>
+                            </a>
 
-                                <div class="desc">
-                                    <h5 class="font-14 mb-1 pt-2">Bryan Lacy</h5>
-                                    <p class="text-muted">18 Friend suggest</p>
-                                </div>
-                            </div>
-                        </a>
+                            <a href="#" class="friends-suggestions-list">
+                                <div class="position-relative">
+                                    <div class="float-left mb-0 mr-3">
+                                        <img src="assets/images/users/user-6.jpg" alt="" class="rounded-circle thumb-md">
+                                    </div>
+                                    <div class="suggestion-icon float-right mt-2 pt-1">
+                                        <i class="mdi mdi-plus"></i>
+                                    </div>
 
-                        <a href="#" class="friends-suggestions-list">
-                            <div class="position-relative">
-                                <div class="float-left mb-0 mr-3">
-                                    <img src="assets/images/users/user-6.jpg" alt="" class="rounded-circle thumb-md">
+                                    <div class="desc">
+                                        <h5 class="font-14 mb-1 pt-2">James Sorrells</h5>
+                                        <p class="text-muted mb-1">6 Friend suggest</p>
+                                    </div>
                                 </div>
-                                <div class="suggestion-icon float-right mt-2 pt-1">
-                                    <i class="mdi mdi-plus"></i>
-                                </div>
+                            </a>
 
-                                <div class="desc">
-                                    <h5 class="font-14 mb-1 pt-2">James Sorrells</h5>
-                                    <p class="text-muted mb-1">6 Friend suggest</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <h4 class="mt-0 header-title mb-4">Sales Analytics</h4>
+                        <div id="morris-line-example" class="morris-chart" style="height: 360px"></div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xl-4">
+                <div class="card m-b-30">
+                    <div class="card-body">
+
+                        <h4 class="mt-0 header-title mb-4">Recent Activity</h4>
+                        <ol class="activity-feed mb-0">
+                            <li class="feed-item">
+                                <div class="feed-item-list">
+                                    <p class="text-muted mb-1">Now</p>
+                                    <p class="font-15 mt-0 mb-0">Andrei Coman posted a new article: <b class="text-primary">Forget UX Rowland</b></p>
                                 </div>
-                            </div>
-                        </a>
+                            </li>
+                            <li class="feed-item">
+                                <p class="text-muted mb-1">Yesterday</p>
+                                <p class="font-15 mt-0 mb-0">Andrei Coman posted a new article: <b class="text-primary">Designer Alex</b></p>
+                            </li>
+                            <li class="feed-item">
+                                <p class="text-muted mb-1">2:30PM</p>
+                                <p class="font-15 mt-0 mb-0">Zack Wetass, <b class="text-primary"> Developer Moreno</b></p>
+                            </li>
+                            <li class="feed-item pb-1">
+                                <p class="text-muted mb-1">12:48 PM</p>
+                                <p class="font-15 mt-0 mb-2">Zack Wetass, <b class="text-primary">UX Murphy</b></p>
+                            </li>
+
+                        </ol>
 
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-xl-4">
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <h4 class="mt-0 header-title mb-4">Sales Analytics</h4>
-                    <div id="morris-line-example" class="morris-chart" style="height: 360px"></div>
-
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-xl-4">
-            <div class="card m-b-30">
-                <div class="card-body">
-
-                    <h4 class="mt-0 header-title mb-4">Recent Activity</h4>
-                    <ol class="activity-feed mb-0">
-                        <li class="feed-item">
-                            <div class="feed-item-list">
-                                <p class="text-muted mb-1">Now</p>
-                                <p class="font-15 mt-0 mb-0">Andrei Coman posted a new article: <b class="text-primary">Forget UX Rowland</b></p>
-                            </div>
-                        </li>
-                        <li class="feed-item">
-                            <p class="text-muted mb-1">Yesterday</p>
-                            <p class="font-15 mt-0 mb-0">Andrei Coman posted a new article: <b class="text-primary">Designer Alex</b></p>
-                        </li>
-                        <li class="feed-item">
-                            <p class="text-muted mb-1">2:30PM</p>
-                            <p class="font-15 mt-0 mb-0">Zack Wetass, <b class="text-primary"> Developer Moreno</b></p>
-                        </li>
-                        <li class="feed-item pb-1">
-                            <p class="text-muted mb-1">12:48 PM</p>
-                            <p class="font-15 mt-0 mb-2">Zack Wetass, <b class="text-primary">UX Murphy</b></p>
-                        </li>
-
-                    </ol>
-
-                </div>
-            </div>
-        </div>
     </div>
-</div>
 
 <?php $this->view("painel/include/footer"); ?>
 
-<script>
+    <script>
 
-    $( document ).ready(function() {
+        $( document ).ready(function() {
 
-        !function ($) {
-            "use strict";
+            !function ($) {
+                "use strict";
 
-            var Dashboard = function () {
-            };
+                var Dashboard = function () {
+                };
 
-            //creates area chart
-            Dashboard.prototype.createAreaChart = function (element, pointSize, lineWidth, data, xkey, ykeys, labels, lineColors) {
-                Morris.Area({
-                    element: element,
-                    pointSize: 0,
-                    lineWidth: 0,
-                    data: data,
-                    xkey: xkey,
-                    ykeys: ykeys,
-                    labels: labels,
-                    resize: true,
-                    gridLineColor: '#2a2c44',
-                    hideHover: 'auto',
-                    lineColors: lineColors,
-                    fillOpacity: .9,
-                    behaveLikeLine: true
-                });
-            },
-
-                //creates Donut chart
-                Dashboard.prototype.createDonutChart = function (element, data, colors) {
-                    Morris.Donut({
+                //creates area chart
+                Dashboard.prototype.createAreaChart = function (element, pointSize, lineWidth, data, xkey, ykeys, labels, lineColors) {
+                    Morris.Area({
                         element: element,
-                        data: data,
-                        resize: true,
-                        labelColor: '#a5a6ad',
-                        backgroundColor: '#222437',
-                        colors: colors
-                    });
-                },
-                //creates line chart Dark
-                Dashboard.prototype.createLineChart1 = function(element, data, xkey, ykeys, labels, lineColors) {
-                    Morris.Line({
-                        element: element,
+                        pointSize: 0,
+                        lineWidth: 0,
                         data: data,
                         xkey: xkey,
                         ykeys: ykeys,
                         labels: labels,
+                        resize: true,
                         gridLineColor: '#2a2c44',
                         hideHover: 'auto',
-                        pointSize: 3,
-                        resize: true, //defaulted to true
-                        lineColors: lineColors
+                        lineColors: lineColors,
+                        fillOpacity: .9,
+                        behaveLikeLine: true
                     });
                 },
 
+                    //creates Donut chart
+                    Dashboard.prototype.createDonutChart = function (element, data, colors) {
+                        Morris.Donut({
+                            element: element,
+                            data: data,
+                            resize: true,
+                            labelColor: '#a5a6ad',
+                            backgroundColor: '#222437',
+                            colors: colors
+                        });
+                    },
+                    //creates line chart Dark
+                    Dashboard.prototype.createLineChart1 = function(element, data, xkey, ykeys, labels, lineColors) {
+                        Morris.Line({
+                            element: element,
+                            data: data,
+                            xkey: xkey,
+                            ykeys: ykeys,
+                            labels: labels,
+                            gridLineColor: '#2a2c44',
+                            hideHover: 'auto',
+                            pointSize: 3,
+                            resize: true, //defaulted to true
+                            lineColors: lineColors
+                        });
+                    },
 
-                Dashboard.prototype.init = function () {
 
-
-
-
-                    //creating area chart
-                    var $areaData = [
-                        {y: '2013', a: 0, b: 0, c:0},
-                        {y: '2014', a: 150, b: 45, c:15},
-                        {y: '2015', a: 60, b: 150, c:220},
-                        {y: '2016', a: 180, b: 36, c:21},
-                        {y: '2017', a: 90, b: 60, c:360},
-                        {y: '2018', a: 75, b: 240, c:120},
-                        {y: '2019', a: 30, b: 30, c:30}
-                    ];
-                    this.createAreaChart('morris-area-example', 0, 0, $areaData, 'y', ['a', 'b', 'c'], ['Series A', 'Series B', 'Series C'], ['#fcbe2d', '#02c58d', '#30419b']);
-
-                    //creating donut chart
-                    var $donutData = [
-                        {label: "Fornecedores", value: <?= $contFornecedor ?> },
-                        {label: "Modelos", value: <?= $contModelo ?> }
-                    ];
-                    this.createDonutChart('morris-donut-example', $donutData, ['#30419b', '#02c58d']);
-                    //create line chart Dark
-                    var $data1  = [
-                        { y: '2009', a: 20, b: 5 },
-                        { y: '2010', a: 45,  b: 35 },
-                        { y: '2011', a: 50,  b: 40 },
-                        { y: '2012', a: 75,  b: 65 },
-                        { y: '2013', a: 50,  b: 40 },
-                        { y: '2014', a: 75,  b: 65 },
-                        { y: '2015', a: 100, b: 90 }
-                    ];
-                    this.createLineChart1('morris-line-example', $data1, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#30419b', '#02c58d']);
+                    Dashboard.prototype.init = function () {
 
 
 
-                },
-                //init
-                $.Dashboard = new Dashboard, $.Dashboard.Constructor = Dashboard
-        }(window.jQuery),
 
-            //initializing
-            function ($) {
-                "use strict";
-                $.Dashboard.init();
-            }(window.jQuery);
+                        //creating area chart
+                        var $areaData = [
+                            {y: '2013', a: 0, b: 0, c:0},
+                            {y: '2014', a: 150, b: 45, c:15},
+                            {y: '2015', a: 60, b: 150, c:220},
+                            {y: '2016', a: 180, b: 36, c:21},
+                            {y: '2017', a: 90, b: 60, c:360},
+                            {y: '2018', a: 75, b: 240, c:120},
+                            {y: '2019', a: 30, b: 30, c:30}
+                        ];
+                        this.createAreaChart('morris-area-example', 0, 0, $areaData, 'y', ['a', 'b', 'c'], ['Series A', 'Series B', 'Series C'], ['#fcbe2d', '#02c58d', '#30419b']);
 
-    });
+                        //creating donut chart
+                        var $donutData = [
+                            {label: "Fornecedores", value: <?= $contFornecedor ?> },
+                            {label: "Modelos", value: <?= $contModelo ?> }
+                        ];
+                        this.createDonutChart('morris-donut-example', $donutData, ['#30419b', '#02c58d']);
+                        //create line chart Dark
+                        var $data1  = [
+                            { y: '2009', a: 20, b: 5 },
+                            { y: '2010', a: 45,  b: 35 },
+                            { y: '2011', a: 50,  b: 40 },
+                            { y: '2012', a: 75,  b: 65 },
+                            { y: '2013', a: 50,  b: 40 },
+                            { y: '2014', a: 75,  b: 65 },
+                            { y: '2015', a: 100, b: 90 }
+                        ];
+                        this.createLineChart1('morris-line-example', $data1, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#30419b', '#02c58d']);
 
-</script>
+
+
+                    },
+                    //init
+                    $.Dashboard = new Dashboard, $.Dashboard.Constructor = Dashboard
+            }(window.jQuery),
+
+                //initializing
+                function ($) {
+                    "use strict";
+                    $.Dashboard.init();
+                }(window.jQuery);
+
+        });
+
+    </script>
