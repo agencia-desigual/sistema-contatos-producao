@@ -8,9 +8,18 @@ label {
 
 .form-control {
   font-size: $base-font;
+  background: lighten($dark, 6%);
+  border: 1px solid lighten($dark, 10%);
+  color: $gray-700;
   &:focus {
-    border-color: $primary;
+    background: lighten($dark, 6%);
+    border: 1px solid lighten($dark, 10%);
     box-shadow: none;
+    color: $gray-700;
+  }
+
+  &::placeholder{
+   color: $gray-700;
   }
 }
 

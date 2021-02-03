@@ -3,27 +3,35 @@
 ===================*/
 
 //Dropdown
+.dropdown-item-text {
+  color: $gray-700;
+}
+
+.dropdown-divider {
+  border-top: 1px solid lighten($dark, 6%);
+}
+
 .dropdown-menu {
   padding: 4px 0;
   font-size: $base-font;
-  box-shadow: $shadow;
-  background-color: $white;
-  border-color: $gray-200;
+  background-color: $dark;
+  border-color: lighten($dark, 6%);
   margin: 0;
 }
 .dropdown-item {
-  background-color: $white;
+  background-color: $dark;
+  color: $gray-700;
   padding: .4rem 1rem;
   
-  &:active,&:hover {
-    background-color: $gray-100;
-    color: $dark;
+  &:active,&:hover,&:focus {
+    background-color: lighten($dark, 6%) !important;
+    color: $gray-700 !important;
   }
 }
 
 .dropdown-item.active, .dropdown-item:active {
-  background-color: $gray-100;
-  color: $dark;
+  background-color: lighten($dark, 6%) ;
+  color: $gray-700;
 }
 
 .dropdown-menu-animated {
@@ -56,12 +64,12 @@
 .blockquote {
   padding: 10px 20px;
   margin-bottom: 20px;
-  border-left: 4px solid $gray-200;
+  border-left: 4px solid $gray-700;
 }
 
 .blockquote-reverse {
   border-left: 0;
-  border-right: 4px solid $gray-200;
+  border-right: 4px solid $gray-700;
   text-align: right;
 }
 
@@ -193,6 +201,10 @@
   border-color: $secondary !important;
 }
 
+.border-bottom {
+  border-bottom: 1px solid lighten($dark, 10%) !important;
+}
+
 // typography
 
 dt {
@@ -212,6 +224,7 @@ dt {
 
 
 
+
 // checkbox
 
 .custom-control-input{
@@ -223,8 +236,28 @@ dt {
   }
 }
 
+.custom-control-label::before{
+  background-color: lighten($dark,6%);
+  border: lighten($dark,6%) solid 1px;
+}
+
 
 /* Navs & Tabs */
+
+
+.nav-tabs{
+  border-bottom: 1px solid lighten($dark, 6%);
+  .nav-item{
+    .nav-link{
+      &.active, &:hover, &:focus {
+        background: lighten($dark, 6%);
+        color: $light;
+        border-color: lighten($dark, 6%);
+      }
+    }
+  }
+}
+
 .nav-pills .nav-item.show .nav-link, .nav-pills .nav-link.active {
   background-color: $primary;
 }
@@ -233,3 +266,49 @@ dt {
   color: $primary;
 }
 
+
+
+/*  Accordion  */
+
+
+#accordion{
+  a{
+    color: $gray-700 !important ;
+  }
+  .card{
+    background: lighten($dark, 6%);
+  }
+}
+
+
+// modal
+
+.modal{
+  .modal-dialog {
+    .close {
+      color: $gray-700;
+    }
+
+    .modal-content {
+      background: lighten($dark, 6%);
+      border-color: lighten($dark, 10%);
+      .modal-header, .modal-footer {
+        border-color: lighten($dark, 10%);
+      }
+    }
+  }
+}
+
+
+// images
+
+.img-thumbnail {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+// progressbar
+
+.progress{
+  background-color: lighten($dark, 6%);
+}

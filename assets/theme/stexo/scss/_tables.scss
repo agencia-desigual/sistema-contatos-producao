@@ -13,14 +13,25 @@
 
 .table-hover tbody tr:hover,.table-striped tbody tr:nth-of-type(odd),
 .thead-default th{
-  background-color: $light;
+  background-color: lighten($dark, 8%);
 }
 
 .table{
   td, th{
     vertical-align: middle;
+    border-color: rgba($white, 0.05) !important;
+    color: $gray-700;
   }
 }
+
+.table-bordered{
+  border: 1px solid lighten($dark, 8%);
+}
+
+.table-hover tbody tr:hover {
+  color:$body-color;
+}
+
 
 /************** datatables ***************/
 
@@ -55,13 +66,15 @@ table.focus-on {
     margin-bottom: 0px;
     .sticky-table-header {
       top: 130px !important;
+      background-color: $bg-body;
+      border-color: $bg-body;
     }
   }
   .btn-group.float-right .dropdown-menu {
     left: auto;
     right: 0;
-    transform: none !important;
-    top: 100% !important;
+    transform: none!important;
+    top: 100%!important;
   }
   tbody {
     th {
@@ -69,8 +82,14 @@ table.focus-on {
       font-weight: normal;
     }
   }
-  .checkbox-row {
+
+.checkbox-row {
     padding-left: 40px;
+    color: $gray-700 !important;
+    &:hover{
+      background-color: lighten($dark, 6%) !important;
+    }
+  
 
     label {
       display: inline-block;

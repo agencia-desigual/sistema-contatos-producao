@@ -4,8 +4,13 @@
 
 .card {
   border: none;
-  box-shadow: $shadow;
   margin-bottom: 30px;
+  background: $dark;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.125);
 }
 
 @media (min-width: 576px) {

@@ -5,6 +5,8 @@
 .datepicker {
   border: 1px solid #ced4da;
   padding: 8px;
+  background: lighten($dark, 4%);
+  color: $gray-500;
 }
 
 .datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td.active.disabled,
@@ -16,6 +18,10 @@
   background-image: none;
   box-shadow: none;
   color: $white;
+}
+
+.datepicker tfoot tr th:hover {
+  background: lighten($dark, 6%);
 }
 
 .table-condensed{
@@ -48,6 +54,26 @@
 /* Prism */
 :not(pre) > code[class*="language-"], pre[class*="language-"] {
   background: $light;
+}
+
+.input-group-text{
+  font-size: 13px;
+  color: $light;
+  background: lighten($dark, 10%);
+  border-color: lighten($dark, 10%);
+}
+
+.form-control{
+  &:disabled, &[readonly]{
+    background: lighten($dark, 6%);
+  }
+}
+
+.colorpicker-element{
+  .btn-light{
+    background-color: lighten($dark, 10%) !important;
+    border-color: lighten($dark, 10%) !important;
+  }
 }
 
 /* Rating */

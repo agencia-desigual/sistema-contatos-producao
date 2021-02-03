@@ -6,6 +6,8 @@ namespace Controller;
 // Importações
 use Helper\Apoio;
 use Model\Categoria;
+use Model\Fornecedor;
+use Model\Modelo;
 use Sistema\Controller;
 
 // Inicia a Classe
@@ -14,6 +16,8 @@ class Principal extends Controller
     // Objetos
     private $objModelCategora;
     private $objHelperApoio;
+    private $objModelModelo;
+    private $objModelFornecedor;
 
     // Método construtor
     public function __construct()
@@ -23,15 +27,63 @@ class Principal extends Controller
 
         // Instancia os objetos
         $this->objModelCategora = new Categoria();
+        $this->objModelModelo = new Modelo();
+        $this->objModelFornecedor = new Fornecedor();
         $this->objHelperApoio = new Apoio();
 
     } // End >> fun::__construct()
 
 
 
+    /**
+     * Método responsável por responsável por carregar a página de
+     * dashboard do usuario buscando todos os dados antes.
+     * -------------------------------------------------------------------
+     * @url painel
+     * @method GET
+     */
     public function index()
     {
 
+        // Verifica se está logado
+        $usuario = $this->objHelperApoio->seguranca();
+
+        // Variaveis
+        $dados = null;
+        $fornecedores = null;
+        $modelos = null;
+        $contModelo = 0;
+        $contFornecedor = 0;
+
+
+        // CONTADORES
+        $contFornecedor = $this->objModelFornecedor
+            ->get()->rowCount();
+
+        $contModelo = $this->objModelModelo
+            ->get()->rowCount();
+
+
+        // BUSCAS
+        $fornecedores = $this->objModelFornecedor
+            ->get("","","0,5")
+            ->fetchAll(\PDO::FETCH_OBJ);
+
+        $modelos = $this->objModelModelo
+            ->get("","","0,5")
+            ->fetchAll(\PDO::FETCH_OBJ);
+
+
+        // Dados da view
+        $dados = [
+            "contFornecedor" => $contFornecedor,
+            "contModelo" => $contModelo,
+            "fornecedores" => $fornecedores,
+            "modelos" => $modelos,
+        ];
+
+        // Carrega a view
+        $this->view("dashboard",$dados);
     }
 
 
@@ -66,7 +118,7 @@ class Principal extends Controller
         else
         {
             // Redireciona o usuário para a dashboard
-            header("Location: " . BASE_URL . "painel");
+            header("Location: " . BASE_URL );
 
         } // O usuário já está logado
 

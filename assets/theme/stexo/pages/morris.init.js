@@ -20,7 +20,7 @@
           ykeys: ykeys,
           labels: labels,
           hideHover: 'auto',
-          gridLineColor: '#eef0f2',
+          gridLineColor: '#2a2c44',
           resize: true, //defaulted to true
           lineColors: lineColors
         });
@@ -54,7 +54,7 @@
             labels: labels,
             resize: true,
             hideHover: 'auto',
-            gridLineColor: '#eef0f2',
+            gridLineColor: '#2a2c44',
             lineColors: lineColors
         });
     },
@@ -66,7 +66,7 @@
             xkey: xkey,
             ykeys: ykeys,
             labels: labels,
-            gridLineColor: '#eef0f2',
+            gridLineColor: '#2a2c44',
             barSizeRatio: 0.4,
             resize: true,
             hideHover: 'auto',
@@ -79,7 +79,9 @@
             element: element,
             data: data,
             resize: true,
-            colors: colors
+            colors: colors,
+            labelColor: '#fff',
+            backgroundColor: '#222437'
         });
     },
     //creates Donut chart Dark
@@ -168,19 +170,18 @@
 
         //creating donut chart
         var $donutData = [
-            {label: "Download Sales", value: 30},
-            {label: "In-Store Sales", value: 40},
-            {label: "Mail-Order Sales", value: 30}
+            {label: "Fornecedores", value: 40},
+            {label: "Modelos", value: 30}
         ];
-        this.createDonutChart('morris-donut-example', $donutData, ['#fcbe2d', '#30419b', '#02c58d']);
+        this.createDonutChart('morris-donut-example', $donutData, ['#30419b', '#02c58d']);
 
         //creating donut chart Dark
-        var $donutData1 = [
-            {label: "Download Sales", value: 40},
-            {label: "In-Store Sales", value: 20},
-            {label: "Mail-Order Sales", value: 20}
+        //creating donut chart
+        var $donutData = [
+            {label: "Fornecedores", value: 40},
+            {label: "Modelos", value: 30}
         ];
-        this.createDonutChart1('morris-donut-example-dark', $donutData1, ['#f0f1f4', '#f0f1f4', '#f0f1f4']);
+        this.createDonutChart('morris-donut-example', $donutData, ['#30419b', '#02c58d']);
 
         //create line chart Dark
         var $data1  = [

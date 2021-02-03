@@ -39,3 +39,21 @@
 {
     position: fixed;
 }
+
+
+#topnav .topbar-main
+{
+    background-color: #CB245E !important;
+}
+
+.notification-list .nav-user img
+{
+    height: 60px !important;
+    width: 60px !important;
+}
+
+.mini-stat-icon i
+{
+    padding: 2px 2px 0px 6px !important;
+    border-radius: 10% !important;
+}

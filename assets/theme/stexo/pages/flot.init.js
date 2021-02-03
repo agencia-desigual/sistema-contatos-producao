@@ -66,10 +66,10 @@
               yaxis: {
                   min: 0,
                   max: 15,
-                  color: 'rgba(0,0,0,0.1)'
+                  color: 'rgba(165, 166, 173, 0.1)'
               },
               xaxis: {
-                  color: 'rgba(0,0,0,0.1)'
+                  color: 'rgba(165, 166, 173, 0.1)'
               },
               tooltip: true,
               tooltipOpts: {
@@ -195,7 +195,7 @@
 			yaxis : {
 				min : 0,
 				max : 100,
-				color : 'rgba(0,0,0,0.1)'
+				color : 'rgba(165, 166, 173, 0.1)'
 			},
 			xaxis : {
 				show : false
@@ -262,8 +262,8 @@
             var downloads = [[0, 1], [1, 12], [2,4], [3, 3], [4, 12], [5, 4], [6, 12]];
             var plabels = ["Marketplace","Other Market"];
             var pcolors = ['#02c58d', '#30419b'];
-            var borderColor = '#f5f5f5';
-            var bgColor = '#fff';
+            var borderColor = '#222437';
+            var bgColor = '#222437';
             this.createPlotGraph("#website-stats", uploads, downloads, plabels, pcolors, borderColor, bgColor);
 
             //Pie graph data
@@ -301,6 +301,3 @@ function($) {
     "use strict";
     $.FlotChart.init()
 }(window.jQuery);
-
-
-
