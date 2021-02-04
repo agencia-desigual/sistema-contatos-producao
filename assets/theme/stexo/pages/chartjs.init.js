@@ -11,6 +11,8 @@
     var ChartJs = function() {};
 
     ChartJs.prototype.respChart = function(selector,type,data, options) {
+        Chart.defaults.global.defaultFontColor="rgba(255,255,255,0.5)",
+        Chart.defaults.scale.gridLines.color="rgba(165, 166, 173, 0.1)";
         // get selector by context
         var ctx = selector.get(0).getContext("2d");
         // pointing parent container to make chart js inherit its width

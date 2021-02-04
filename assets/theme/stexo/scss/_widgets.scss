@@ -52,7 +52,7 @@
       position: relative;
       padding-bottom: 30px;
       padding-left: 30px;
-      border-left: 2px solid $light;
+      border-left: 2px solid lighten($dark, 10%) ;
       &:after {
         content: "";
         display: block;
@@ -63,7 +63,7 @@
         height: 20px;
         border-radius: 50%;
         border: 6px solid $primary;
-        background-color: $white;
+        background-color: $gray-200;
       }
   }
 }
@@ -82,16 +82,24 @@
 // Friends Suggestions
 
 
-.suggestion-icon{
-  i{
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    color: $white;
-    display: inline-block;
-    text-align: center;
-    border-radius: 50%;
-    background-color: $primary;
-    font-size: 15px;
+.friends-suggestions-list{
+  .suggestion-icon{
+    i{
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      color: $gray-200;
+      display: inline-block;
+      text-align: center;
+      border-radius: 50%;
+      background-color: $primary;
+      font-size: 15px;
+    }
+  }
+  .desc{
+    h5{
+      color: $gray-700;
+    }
   }
 }
+

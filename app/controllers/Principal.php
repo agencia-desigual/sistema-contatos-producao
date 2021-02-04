@@ -6,6 +6,8 @@ namespace Controller;
 // Importações
 use Helper\Apoio;
 use Model\Categoria;
+use Model\Fornecedor;
+use Model\Modelo;
 use Sistema\Controller;
 use Tholu\Packer\Packer;
 
@@ -15,6 +17,8 @@ class Principal extends Controller
     // Objetos
     private $objModelCategora;
     private $objHelperApoio;
+    private $objModelModelo;
+    private $objModelFornecedor;
 
     // Método construtor
     public function __construct()
@@ -24,16 +28,27 @@ class Principal extends Controller
 
         // Instancia os objetos
         $this->objModelCategora = new Categoria();
+        $this->objModelModelo = new Modelo();
+        $this->objModelFornecedor = new Fornecedor();
         $this->objHelperApoio = new Apoio();
 
     } // End >> fun::__construct()
 
 
+<<<<<<< HEAD
     /**
      * Métood responsável por exibir a página de cadastro
      * para modelos.
      * -----------------------------------------------------------------
      * @url BASE_URL
+=======
+
+    /**
+     * Método responsável por responsável por carregar a página de
+     * dashboard do usuario buscando todos os dados antes.
+     * -------------------------------------------------------------------
+     * @url painel
+>>>>>>> 111797092dc6030861e40560c2ed406c19a68555
      * @method GET
      */
     public function index()
@@ -41,6 +56,7 @@ class Principal extends Controller
         // Variaveis
         $dados = null;
 
+<<<<<<< HEAD
         // Dados
         $dados = [
             "js" => [
@@ -50,6 +66,48 @@ class Principal extends Controller
 
         // Chama a view
         $this->view("site/index", $dados);
+=======
+        // Verifica se está logado
+        $usuario = $this->objHelperApoio->seguranca();
+
+        // Variaveis
+        $dados = null;
+        $fornecedores = null;
+        $modelos = null;
+        $contModelo = 0;
+        $contFornecedor = 0;
+
+
+        // CONTADORES
+        $contFornecedor = $this->objModelFornecedor
+            ->get()->rowCount();
+
+        $contModelo = $this->objModelModelo
+            ->get()->rowCount();
+
+
+        // BUSCAS
+        $fornecedores = $this->objModelFornecedor
+            ->get("","","0,5")
+            ->fetchAll(\PDO::FETCH_OBJ);
+
+        $modelos = $this->objModelModelo
+            ->get("","","0,5")
+            ->fetchAll(\PDO::FETCH_OBJ);
+
+
+        // Dados da view
+        $dados = [
+            "contFornecedor" => $contFornecedor,
+            "contModelo" => $contModelo,
+            "fornecedores" => $fornecedores,
+            "modelos" => $modelos,
+        ];
+
+        // Carrega a view
+        $this->view("dashboard",$dados);
+    }
+>>>>>>> 111797092dc6030861e40560c2ed406c19a68555
 
     } // End >> fun::index()
 
@@ -84,7 +142,7 @@ class Principal extends Controller
         else
         {
             // Redireciona o usuário para a dashboard
-            header("Location: " . BASE_URL . "painel");
+            header("Location: " . BASE_URL );
 
         } // O usuário já está logado
 

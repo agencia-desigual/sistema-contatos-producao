@@ -15,7 +15,7 @@
         content: "";
         width: 3px;
         height: 100%;
-        background: $gray-500;
+        background: lighten($dark, 14px);
         position: absolute;
         top: 0;
         left: 50%;
@@ -28,8 +28,8 @@
         width: 18px;
         height: 18px;
         border-radius: 50%;
-        background: $white;
-        border: 2px solid $gray-500;
+        background: lighten($dark, 14%);
+        border: 2px solid lighten($dark, 14px);
         box-sizing: content-box;
         margin: auto;
         position: absolute;
@@ -43,7 +43,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: $primary;
+            background: $gray-700;
             margin: auto;
             position: absolute;
             top: 0;
@@ -78,11 +78,11 @@
         width: 46.5%;
         padding: 43px 50px;
         margin: 0 20px 0 0;
-        background: $light;
+        background: lighten($dark, 6%);
         position: relative;
         &:after {
             content: "";
-            border-left: 20px solid$light;
+            border-left: 20px solid lighten($dark, 6%);
             border-top: 20px solid transparent;
             border-bottom: 20px solid transparent;
             position: absolute;
@@ -118,8 +118,8 @@
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    border: 2px solid $gray-500;
-    background: $white;
+    border: 2px solid lighten($dark, 14px);
+    background: $gray-700;
     margin: 0 auto;
     position: absolute;
     top: 0;
@@ -154,7 +154,7 @@
                 margin: 0 0 0 20px;
                 &:after {
                     border-left: none;
-                    border-right: 20px solid $light;
+                    border-right: 20px solid lighten($dark, 6%);
                     right: auto;
                     left: -20px;
                 }
@@ -242,7 +242,7 @@
     .main-timeline .timeline-content:after,
     .main-timeline .timeline:nth-child(2n) .timeline-content:after {
         border: none;
-        border-bottom: 20px solid$light;
+        border-bottom: 20px solidlighten($dark, 6%);
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
         top: -20px;

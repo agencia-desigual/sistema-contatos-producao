@@ -12,6 +12,54 @@ namespace Helper;
 class Apoio
 {
 
+
+
+    /**
+     * Método responsável por realizar uma verificação se o usuário
+     * acessante está logado ou não. Caso não esteja redireciona para
+     * a página de login. Se estiver, retorna os dados do usuário.
+     * -------------------------------------------------------------------
+     * @return mixed|null
+     */
+    public function seguranca()
+    {
+        // Recupera os dados da sessao
+        $user = (!empty($_SESSION["usuario"]) ? $_SESSION["usuario"] : null);
+        $token = (!empty($_SESSION["token"]) ? $_SESSION["token"] : null);
+
+        // Verifica se possui algo
+        if(!empty($user->id_usuario))
+        {
+            // Verifica se o token está valido
+            if($token->data_expira > date("Y-m-d H:i:s"))
+            {
+                // Add o token ao usuario
+                $user->token = $token;
+
+                // Retorna o usuario
+                return $user;
+            }
+            else
+            {
+                // Deleta a session
+                session_destroy();
+
+                // Redireciona para a tela de logof
+                header( "Location: " . BASE_URL . "login");
+
+            } // Error - Token Expirado
+        }
+        else
+        {
+            // Redireciona para a tela de login
+            header( "Location: " . BASE_URL . "login");
+
+        } // Error - usuario não logado
+
+    } // End >> fun::seguranca()
+
+
+
     /**
      * Método responsável por formatar um numero na casa do milhar, deixando
      * em siglas K,M,B,T,Q

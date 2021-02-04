@@ -71,3 +71,24 @@ $Rotas->on("GET","","Principal::index");
 
 // Js criptografia
 $Rotas->on("GET","public/{p}","Principal::criptografaJs");
+
+// Usuarios
+$Rotas->on("GET","usuarios","Usuario::listar");
+$Rotas->on("GET","usuario/adicionar","Usuario::adicionar");
+$Rotas->on("GET","usuario/editar/{p}","Usuario::editar");
+
+// Categorias
+$Rotas->on("GET","categorias","Categoria::listar");
+$Rotas->on("GET","categoria/adicionar","Categoria::adicionar");
+$Rotas->on("GET","categoria/editar/{p}","Categoria::editar");
+
+// Fornecedores
+$Rotas->on("GET","fornecedores","Fornecedor::listar");
+$Rotas->on("GET","fornecedor/adicionar","Fornecedor::adicionar");
+$Rotas->on("GET","fornecedor/editar/{p}","Fornecedor::editar");
+
+// Modelos
+$Rotas->on("GET","modelos","Modelo::listar");
+$Rotas->on("GET","modelo/adicionar","Modelo::adicionar");
+$Rotas->on("GET","modelo/editar/{p}","Modelo::editar");
+

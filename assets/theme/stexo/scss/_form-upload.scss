@@ -6,7 +6,7 @@
 .dropzone {
   min-height: 230px;
   border: 2px dashed rgba(0, 0, 0, 0.3);
-  background: $white;
+  background: lighten($dark, 6%);
   border-radius: 6px;
 
   .dz-message {

@@ -4,7 +4,7 @@
 .email-leftbar {
   width: 230px;
   float: left;
-  background-color: $white;
+  background-color: $dark;
   padding: 20px;
   border-radius: 5px;
 }
@@ -44,7 +44,7 @@
 .mail-list {
   a {
     display: block;
-    color: lighten($dark,5%);
+    color: lighten($gray-700,5%);
     font-size: 13px;
     line-height: 24px;
     padding: 5px;
@@ -68,11 +68,11 @@
     transition-duration: .3s;
 
     a{
-      color: $dark;
+      color: $gray-700;
     }
 
     &:hover {
-      background: rgba($dark, 0.08);
+      background: lighten($dark,6%);
       transition-duration: .05s;
     }
 
@@ -160,11 +160,11 @@
   }
 
   li.unread  {
-    background-color: darken($white,3%);
+    background-color: lighten($dark,6%);
     font-weight: 500;
-    color: darken($dark,5%);
+    color: $gray-500;
     a{
-      color: darken($dark,5%);
+      color: $gray-500;
       font-weight: 500;
     }
   }
@@ -201,7 +201,7 @@
         font-family: "Material Design Icons";
         top: 0;
         height: 20px;
-        color: darken($dark,5%);
+        color:$gray-500;
         width: 20px;
         position: absolute;
         margin-top: -27px;
@@ -225,9 +225,10 @@
     padding-left: 34px;
     padding-right: 12px;
     margin-right: 16px;
-    background: #f6f6f6;
+    background: lighten($dark, 6%);
     box-shadow: none;
     border: none;
+    color: $gray-700;
   }
 
   button {
@@ -235,7 +236,7 @@
     top: 12px;
     left: 6px;
     display: block;
-    color: $muted;
+    color: $gray-700;
     font-size: 11px;
     border: none;
     background-color: transparent;

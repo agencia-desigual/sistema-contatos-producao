@@ -29,15 +29,17 @@
                             </a>
                         </div>
 
-                        <h3>Acesso ao sistema</h3>
-                        <p>Informe suas credencias de acesso.</p>
+                        <div class="text-center">
+                            <h3 class="text-center">Acesso ao sistema</h3>
+                            <p class="text-center">Informe suas credencias de acesso.</p>
+                        </div>
 
                         <form id="formLogin">
                             <input class="form-control" type="text" name="email" placeholder="E-mail" required>
                             <input class="form-control" type="password" name="senha" placeholder="Senha" required>
 
                             <div class="form-button">
-                                <button id="submit" style="background-color: #da256d;" type="submit" class="ibtn">Acessar</button>
+                                <button id="submit" style="width: 100%;background-color: #da256d;" type="submit" class="ibtn">Acessar</button>
                             </div>
                         </form>
 

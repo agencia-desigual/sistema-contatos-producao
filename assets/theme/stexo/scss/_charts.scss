@@ -79,6 +79,11 @@
   border-radius: 1px;
 }
 
+.legend td {
+  background-color:$dark!important;
+  color:$gray-700;
+}
+
 /* Chartist chart */
 .ct-golden-section:before {
   float: none;
@@ -86,8 +91,18 @@
 .ct-chart {
   height: 300px;
 }
+
+.c3{
+  path, line{
+    stroke: $muted;
+  }
+  text{
+    fill: $muted;
+  }
+}
+
 .ct-grid {
-  stroke: rgba(0, 0, 0, 0.09);
+  stroke: rgba(165, 166, 173, 0.1);
   stroke-width: 2px;
   stroke-dasharray: 3px;
 }

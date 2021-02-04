@@ -77,8 +77,17 @@ class Usuario extends Controller
                 // Verifica se gerou um token
                 if($token != false)
                 {
+
+                    // Atribui token ao usuário
+                    $usuario->token = $token;
+
                     // Remove a senha
                     unset($usuario->senha);
+
+                    // Adiciona na Session do PHP
+                    $_SESSION['usuario'] = $usuario;
+                    $_SESSION['token'] = $usuario->token;
+                    $_SESSION['avatar'] =  rand(1, 10);
 
                     // Array de retorno
                     $dados = [
