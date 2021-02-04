@@ -60,4 +60,68 @@ class Categoria extends Controller
 
 
 
+    /**
+     * Método responsável por responsável por carregar a página de
+     * adicionar categoria.
+     * -------------------------------------------------------------------
+     * @url categoria/adicionar
+     * @method GET
+     */
+    public function adicionar()
+    {
+
+        // Verifica se está logado
+        $usuario = $this->objHelperApoio->seguranca();
+
+        // Variaveis
+        $dados = null;
+
+        // Dados da view
+        $dados = [
+            "js" => [
+                "modulos" => ["Categoria"]
+            ]
+        ];
+
+        // Carrega a view
+        $this->view("painel/categoria/adicionar",$dados);
+    }
+
+
+
+    /**
+     * Método responsável por responsável por carregar a página de
+     * editar categoria.
+     * -------------------------------------------------------------------
+     * @url categoria/editar/{id}
+     * @method GET
+     */
+    public function editar($id)
+    {
+
+        // Verifica se está logado
+        $usuario = $this->objHelperApoio->seguranca();
+
+        // Busca a categoria selecionada
+        $categoria = $this->objModelCategoria
+            ->get(["id_categoria" => $id])
+            ->fetchAll(\PDO::FETCH_OBJ);
+
+        // Variaveis
+        $dados = null;
+
+        // Dados da view
+        $dados = [
+            "categoria" => $categoria,
+            "js" => [
+                "modulos" => ["Categoria"]
+            ]
+        ];
+
+        // Carrega a view
+        $this->view("painel/categoria/adicionar",$dados);
+    }
+
+
+
 } // End >> Class::Categoria

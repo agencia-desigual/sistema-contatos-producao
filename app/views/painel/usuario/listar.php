@@ -56,12 +56,12 @@
                                             <span style="padding: 10px;font-size: 15px;font-weight: 600;" class="badge badge-primary">ADMIN</span>
                                         </td>
                                         <td class="text-center">
-                                            <a href="<?= BASE_URL ?>usuario/editar/<?= $usuario->id_fornecedor ?>"
+                                            <a href="<?= BASE_URL ?>usuario/editar/<?= $usuario->id_usuario ?>"
                                                class="btn btn-primary btn-sm"
                                                style="padding: 10px;font-size: 13px;font-weight: 800;margin-right: 10px">EDITAR <i class="far fa-edit"></i></a>
 
                                             <?php if ($user->id_usuario != $usuario->id_usuario) : ?>
-                                                <a href="#" data-id="<?= $usuario->id_fornecedor ?>"
+                                                <a href="#" data-id="<?= $usuario->id_usuario ?>"
                                                    class="btn btn-danger btn-sm excluirUsuario"
                                                    style="padding: 10px;font-size: 13px;font-weight: 800">EXCLUIR <i class="far fa-trash-alt"></i></a>
                                             <?php endif; ?>
