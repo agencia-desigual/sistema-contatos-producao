@@ -193,14 +193,14 @@ $(".deletarUsuario").on("click", function () {
 
     // Pergunta se realmente quer deletar
     Swal.fire({
-        title: 'Deletar o Usuário',
-        text: 'Deseja realmente deletar esse usuário?',
+        title: 'Excluir o Usuário',
+        text: 'Deseja realmente excluir esse usuário?',
         type: 'warning',
         showCancelButton: true,
         cancelButtonText: 'Cancelar',
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim, delete!'
+        confirmButtonText: 'Sim, excluir!'
     }).then((result) => {
         if (result.value)
         {

@@ -310,7 +310,7 @@ class Usuario extends Controller
                 $dados = [
                     "tipo" => true,
                     "code" => 200,
-                    "mensagem" => "Item inserido com sucesso.",
+                    "mensagem" => "Usuário cadastrado.",
                     "objeto" => $obj
                 ];
             }
@@ -477,7 +477,7 @@ class Usuario extends Controller
                 $dados = [
                     "tipo" => true,
                     "code" => 200,
-                    "mensagem" => "O usuário foi deletado.",
+                    "mensagem" => "O usuário foi exluído.",
                     "objeto" => $obj
                 ];
             }

@@ -92,4 +92,3 @@ $Rotas->on("GET","fornecedor/editar/{p}","Fornecedor::editar");
 $Rotas->on("GET","modelos","Modelo::listar");
 $Rotas->on("GET","modelo/adicionar","Modelo::adicionar");
 $Rotas->on("GET","modelo/editar/{p}","Modelo::editar");
-

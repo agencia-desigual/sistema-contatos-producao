@@ -42,7 +42,7 @@
                         <tbody>
                             <?php if (!empty($usuarios)) : ?>
                                 <?php foreach ($usuarios as $usuario) : ?>
-                                    <tr>
+                                    <tr id="tb_<?= $usuario->id_usuario ?>">
                                         <td><?= $usuario->nome ?></td>
                                         <td><?= $usuario->email ?></td>
                                         <td class="text-center">
@@ -62,7 +62,7 @@
 
                                             <?php if ($user->id_usuario != $usuario->id_usuario) : ?>
                                                 <a href="#" data-id="<?= $usuario->id_usuario ?>"
-                                                   class="btn btn-danger btn-sm excluirUsuario"
+                                                   class="btn btn-danger btn-sm deletarUsuario"
                                                    style="padding: 10px;font-size: 13px;font-weight: 800">EXCLUIR <i class="far fa-trash-alt"></i></a>
                                             <?php endif; ?>
 
