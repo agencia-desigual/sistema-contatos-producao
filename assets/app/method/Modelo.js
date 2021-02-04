@@ -1,6 +1,5 @@
 import Global from "../global.js";
 
-
 /**
  * Método responsável por realizar uma solicitação na api
  */

@@ -42,7 +42,7 @@
                         <tbody>
                             <?php if (!empty($fornecedores)) : ?>
                                 <?php foreach ($fornecedores as $fornecedor) : ?>
-                                    <tr>
+                                    <tr id="tb_<?= $fornecedor->id_fornecedor; ?>">
                                         <td><?= $fornecedor->nome ?></td>
                                         <td><?= $fornecedor->telefone ?></td>
                                         <td><?= $fornecedor->email ?></td>

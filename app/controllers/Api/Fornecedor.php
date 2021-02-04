@@ -287,7 +287,7 @@ class Fornecedor extends Controller
             if(!empty($put))
             {
                 // Altera as informações
-                if($this->objModelCategoria->update($put, ["id_categoria" => $id]) != false)
+                if($this->objModelFornecedor->update($put, ["id_categoria" => $id]) != false)
                 {
                     // Busca o objeto alterado
                     $objAlterado = $this->objModelFornecedor
