@@ -54,7 +54,7 @@
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
-                                <p>Sem categorias</p>
+                                <p>Sem Categorias</p>
                             <?php endif; ?>
                         </tbody>
 
