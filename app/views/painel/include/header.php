@@ -18,6 +18,14 @@
     <link href="<?= BASE_URL; ?>assets/theme/stexo/css/icons.css" rel="stylesheet" type="text/css">
     <link href="<?= BASE_URL; ?>assets/theme/stexo/css/style.css" rel="stylesheet" type="text/css">
 
+    <!-- DataTables -->
+    <link href="<?= BASE_URL; ?>assets/theme/stexo/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= BASE_URL; ?>assets/theme/stexo/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="<?= BASE_URL; ?>assets/theme/stexo/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+
     <!-- Autoload CSS -->
     <?php $this->view("autoload/css"); ?>
 
@@ -99,7 +107,7 @@
 
                             <!-- DASHBOARD -->
                             <li class="has-submenu">
-                                <a href="index.html"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                                <a href="<?= BASE_URL; ?>"><i class="fas fa-chart-pie"></i> Dashboard</a>
                             </li>
                             <!-- FIM >> DASHBOARD -->
 
@@ -153,6 +161,20 @@
                             </li>
                             <!-- FIM >> MODELOS -->
 
+                            <!-- USUÁRIOS -->
+                            <li class="has-submenu">
+
+                                <a href="#"><i class="fas fa-user-shield"></i> Usuários <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="<?= BASE_URL; ?>usuario/adicionar">Adicionar</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= BASE_URL ?>usuarios">Todos os usuários</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- FIM >> USUÁRIOS -->
 
                         </ul>
                     </div>
