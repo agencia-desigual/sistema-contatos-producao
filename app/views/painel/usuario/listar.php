@@ -8,7 +8,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-right">
-                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>"><?= SITE_NOME ?></a></li>
+                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>painel"><?= SITE_NOME ?></a></li>
                     <li class="breadcrumb-item"><a href="<?= BASE_URL ?>usuarios">Usuários</a></li>
                     <li class="breadcrumb-item active">Todos</li>
                 </ol>
@@ -42,7 +42,7 @@
                         <tbody>
                             <?php if (!empty($usuarios)) : ?>
                                 <?php foreach ($usuarios as $usuario) : ?>
-                                    <tr>
+                                    <tr id="tb_<?= $usuario->id_usuario ?>">
                                         <td><?= $usuario->nome ?></td>
                                         <td><?= $usuario->email ?></td>
                                         <td class="text-center">
@@ -56,13 +56,13 @@
                                             <span style="padding: 10px;font-size: 15px;font-weight: 600;" class="badge badge-primary">ADMIN</span>
                                         </td>
                                         <td class="text-center">
-                                            <a href="<?= BASE_URL ?>usuario/editar/<?= $usuario->id_fornecedor ?>"
+                                            <a href="<?= BASE_URL ?>usuario/editar/<?= $usuario->id_usuario ?>"
                                                class="btn btn-primary btn-sm"
                                                style="padding: 10px;font-size: 13px;font-weight: 800;margin-right: 10px">EDITAR <i class="far fa-edit"></i></a>
 
                                             <?php if ($user->id_usuario != $usuario->id_usuario) : ?>
-                                                <a href="#" data-id="<?= $usuario->id_fornecedor ?>"
-                                                   class="btn btn-danger btn-sm excluirUsuario"
+                                                <a href="#" data-id="<?= $usuario->id_usuario ?>"
+                                                   class="btn btn-danger btn-sm deletarUsuario"
                                                    style="padding: 10px;font-size: 13px;font-weight: 800">EXCLUIR <i class="far fa-trash-alt"></i></a>
                                             <?php endif; ?>
 

@@ -8,7 +8,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-right">
-                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>"><?= SITE_NOME ?></a></li>
+                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>painel"><?= SITE_NOME ?></a></li>
                     <li class="breadcrumb-item"><a href="<?= BASE_URL ?>categorias">Categorias</a></li>
                     <li class="breadcrumb-item active">Todas</li>
                 </ol>
@@ -40,7 +40,7 @@
                         <tbody>
                             <?php if (!empty($categorias)) : ?>
                                 <?php foreach ($categorias as $categoria) : ?>
-                                    <tr>
+                                    <tr id="tb_<?= $categoria->id_categoria ?>">
                                         <td><?= $categoria->nome ?></td>
                                         <td class="text-center">
                                             <a href="<?= BASE_URL ?>categoria/editar/<?= $categoria->id_categoria ?>"
@@ -48,7 +48,7 @@
                                                style="padding: 10px;font-size: 13px;font-weight: 800;margin-right: 10px">EDITAR <i class="far fa-edit"></i></a>
 
                                             <a href="#" data-id="<?= $categoria->id_categoria ?>"
-                                               class="btn btn-danger btn-sm excluirCateogria"
+                                               class="btn btn-danger btn-sm excluirCategoria"
                                                style="padding: 10px;font-size: 13px;font-weight: 800">EXCLUIR <i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>

@@ -8,7 +8,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-right">
-                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>"><?= SITE_NOME ?></a></li>
+                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>painel"><?= SITE_NOME ?></a></li>
                     <li class="breadcrumb-item"><a href="<?= BASE_URL ?>fornecedores">Fornecedores</a></li>
                     <li class="breadcrumb-item active">Todos</li>
                 </ol>

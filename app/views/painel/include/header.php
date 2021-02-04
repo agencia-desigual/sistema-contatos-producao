@@ -43,7 +43,7 @@
 
                     <!-- LOGO -->
                     <div>
-                        <a href="index.html" class="logo">
+                        <a href="<?= BASE_URL ?>painel" class="logo">
                                 <span class="logo-light">
                                         <img src="<?= BASE_URL ?>assets/custom/img/logo-branca.png">
                                 </span>
