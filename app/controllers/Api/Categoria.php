@@ -328,7 +328,7 @@ class Categoria extends Controller
                     $dados = [
                         "tipo" => true,
                         "code" => 200,
-                        "mensagem" => "A categoria foi deletada.",
+                        "mensagem" => "A categoria foi excluída.",
                         "objeto" => $obj
                     ];
                 }

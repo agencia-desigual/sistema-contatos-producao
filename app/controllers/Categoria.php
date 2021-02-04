@@ -51,7 +51,10 @@ class Categoria extends Controller
 
         // Dados da view
         $dados = [
-            "categorias" => $categorias
+            "categorias" => $categorias,
+            "js" => [
+                "modulos" => ["Categoria"]
+            ]
         ];
 
         // Carrega a view
@@ -105,7 +108,7 @@ class Categoria extends Controller
         // Busca a categoria selecionada
         $categoria = $this->objModelCategoria
             ->get(["id_categoria" => $id])
-            ->fetchAll(\PDO::FETCH_OBJ);
+            ->fetch(\PDO::FETCH_OBJ);
 
         // Variaveis
         $dados = null;
@@ -119,7 +122,7 @@ class Categoria extends Controller
         ];
 
         // Carrega a view
-        $this->view("painel/categoria/adicionar",$dados);
+        $this->view("painel/categoria/editar",$dados);
     }
 
 
