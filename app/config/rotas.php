@@ -46,6 +46,12 @@ $Rotas->onGroup("api-modelo","PUT","update/{p}","update");
 $Rotas->onGroup("api-modelo","DELETE","delete/{p}","delete");
 
 
+// Foto
+$Rotas->group("api-foto","api/foto","Api\Foto");
+$Rotas->onGroup("api-foto","POST","insert","insert");
+$Rotas->onGroup("api-foto","DELETE","delete/{p}","delete");
+
+
 
 /** ============================================================ *
  * SISTEMA ===================================================== */
@@ -62,3 +68,6 @@ $Rotas->on("GET","sair","Principal::sair");
 
 // Página inicial
 $Rotas->on("GET","","Principal::index");
+
+// Js criptografia
+$Rotas->on("GET","public/{p}","Principal::criptografaJs");

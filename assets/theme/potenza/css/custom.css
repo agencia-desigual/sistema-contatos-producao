@@ -85,9 +85,9 @@
 
 .card-contrato .informacoes a
 {
-    background-color: #1dbe72;
+    background-color: #34133d;
     color: #fff;
-    border: 2px solid #1dbe72;
+    border: 2px solid #34133d;
     padding: 10px 20px;
     font-size: 15px;
     font-weight: bold;
@@ -97,8 +97,8 @@
 .card-contrato .informacoes a:hover
 {
     background-color: #fff;
-    color: #1dbe72;
-    border: 2px solid #1dbe72;
+    color: #34133d;
+    border: 2px solid #34133d;
 }
 
 

@@ -4,7 +4,9 @@
 namespace Controller\Api;
 
 // Importações
+use Model\Foto;
 use Sistema\Controller;
+use Sistema\Helper\File;
 use Sistema\Helper\Input;
 use Sistema\Helper\Seguranca;
 
@@ -13,6 +15,7 @@ class Modelo extends Controller
 {
     // Objetos
     private $objModelModelo;
+    private $objModelFoto;
     private $objSeguranca;
 
     // Método construtor
@@ -23,6 +26,7 @@ class Modelo extends Controller
 
         // Instancia os objetos
         $this->objModelModelo = new \Model\Modelo();
+        $this->objModelFoto = new Foto();
         $this->objSeguranca = new Seguranca();
 
     } // End >> fun::__construct()
@@ -159,6 +163,7 @@ class Modelo extends Controller
         $usuario = null;
         $obj = null;
         $post = null;
+        $salvaFile = null;
 
         // Recupera os dados post
         $post = $_POST;
@@ -177,6 +182,72 @@ class Modelo extends Controller
             !empty($post["cidade"]) &&
             !empty($post["estado"]))
         {
+            // Verifica se inseriu uma imagem
+            if(!empty($_FILES["arquivo"]) && $_FILES["arquivo"]["size"] > 0)
+            {
+                // Instancia o objeto
+                $objFile = new File();
+
+                // Caminho
+                $caminho = "./storage/fotos/";
+
+                // Verifica se o caminho informado não existe
+                if(!is_dir($caminho))
+                {
+                    // Cria a pasta do caminho
+                    mkdir($caminho, 0777, true);
+                }
+
+                // Seta as configurações
+                $objFile->setStorange($caminho);
+                $objFile->setMaxSize(5 * MB);
+                $objFile->setFile($_FILES["arquivo"]);
+                $objFile->setExtensaoValida(["jpg","png","jpeg","gif"]);
+
+                // Verifica se o tamanho está dentro do limite
+                if($objFile->validaSize())
+                {
+                    // Verifica se a extenção da imagem é correta
+                    if($objFile->validaExtensao())
+                    {
+                        // Realiza o upload
+                        $arquivo = $objFile->upload();
+
+                        // Verifica se fez o uplaod
+                        if(!empty($arquivo))
+                        {
+                            // Add a imagem
+                            $salvaFile = ["imagem" => $arquivo];
+                        }
+                        else
+                        {
+                            // Msg
+                            $this->api(["mensagem" => "Ocorreu um erro ao salvar a imagem"]);
+                        } // Error >> Ocorreu um erro ao salvar a imagem
+                    }
+                    else
+                    {
+                        // Msg
+                        $this->api(["mensagem" => "O arquivo enviado não é uma imagem."]);
+                    } // Error >> O arquivo enviado não é uma imagem.
+                }
+                else
+                {
+                    // Msg
+                    $this->api(["mensagem" => "Informe uma imagem de no máximo 5MB"]);
+                } // Error >> Informe uma imagem de no máximo 5MB
+            }
+            else
+            {
+                // Verifica o canal
+                if($post["canal"] == "site")
+                {
+                    // O arquivo é obrigatório
+                    $this->api(["mensagem" => "Informe uma foto sua."]);
+                }
+            }
+
+
             // Insere o objeto
             $obj = $this->objModelModelo
                 ->insert($post);
@@ -188,6 +259,17 @@ class Modelo extends Controller
                 $obj = $this->objModelModelo
                     ->get(["id_modelo" => $obj])
                     ->fetch(\PDO::FETCH_OBJ);
+
+                // Verifica se possui imagem
+                if(!empty($salvaFile))
+                {
+                    // Adiciona o id da modelo
+                    $salvaFile["id_modelo"] = $obj->id_modelo;
+
+                    // Insere no banco
+                    $this->objModelFoto
+                        ->insert($salvaFile);
+                }
 
                 // Retorno
                 $dados = [
@@ -323,6 +405,26 @@ class Modelo extends Controller
         // Verifica se existe
         if(!empty($obj))
         {
+            // Busca as imagens
+            $fotos = $this->objModelFoto
+                ->get(["id_modelo" => $id])
+                ->fetchAll(\PDO::FETCH_OBJ);
+
+            // Verifica se possui fotos
+            if(!empty($fotos))
+            {
+                // Percorre as fotos salvas
+                foreach ($fotos as $foto)
+                {
+                    // Deleta a foto
+                    unlink("./storage/fotos/" . $foto->imagem);
+                }
+
+                // Deleta os registros
+                $this->objModelFoto
+                    ->delete(["id_modelo" => $id]);
+            }
+
             // Deleta o usuário
             if($this->objModelModelo->delete(["id_modelo" => $id]) != false)
             {

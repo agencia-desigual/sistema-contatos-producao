@@ -7,6 +7,7 @@ namespace Controller;
 use Helper\Apoio;
 use Model\Categoria;
 use Sistema\Controller;
+use Tholu\Packer\Packer;
 
 // Inicia a Classe
 class Principal extends Controller
@@ -28,12 +29,29 @@ class Principal extends Controller
     } // End >> fun::__construct()
 
 
-
+    /**
+     * Métood responsável por exibir a página de cadastro
+     * para modelos.
+     * -----------------------------------------------------------------
+     * @url BASE_URL
+     * @method GET
+     */
     public function index()
     {
+        // Variaveis
+        $dados = null;
 
-    }
+        // Dados
+        $dados = [
+            "js" => [
+                "modulos" => ["Modelo"]
+            ]
+        ];
 
+        // Chama a view
+        $this->view("site/index", $dados);
+
+    } // End >> fun::index()
 
 
 
@@ -107,5 +125,33 @@ class Principal extends Controller
         $this->view("error/404");
 
     } // End >> fun::error()
+
+
+
+    public function criptografaJs($url)
+    {
+        // Arquivo a ser criptografado
+        $arquivo = "./" . $url;
+
+        // Verifica se a url existe
+        if(is_file($arquivo))
+        {
+            // Informa que o tipo é js
+            header("Content-Type: application/javascript");
+            // header("Accept-Ranges: bytes");
+
+            // Abre o arquivo
+            $conteudo = file_get_contents($arquivo);
+
+            $packer = new Packer($conteudo);
+            $packed_js = $packer->pack();
+            echo $packed_js;
+        }
+        else
+        {
+            // Error 404
+            $this->error();
+        } // Error >> 404
+    }
 
 } // End >> Class::Principal
