@@ -15,9 +15,21 @@ $(".maskCNPJ").mask("99.999.999/9999-99");
 $(".maskTel").mask("(99) 9999-9999");
 $(".maskCel").mask("(99) 99999-9999");
 $(".maskPeso").mask("#.00", {reverse: true});
+$(".maskAltura").mask("0.00", {reverse: true});
 $(".maskNumero").mask("#", {reverse: true});
+$(".maskCalcado").mask("00", {reverse: true});
 $(".maskCartao").mask("# ###0", {reverse: true});
 
+var SPMaskBehavior = function (val) {
+        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+    },
+    spOptions = {
+        onKeyPress: function(val, e, field, options) {
+            field.mask(SPMaskBehavior.apply({}, arguments), options);
+        }
+    };
+
+$('.maskTelCel').mask(SPMaskBehavior, spOptions);
 
 /**
  * Método responsável por realizar uma requisição,

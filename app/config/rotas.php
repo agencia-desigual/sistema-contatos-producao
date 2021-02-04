@@ -48,7 +48,7 @@ $Rotas->onGroup("api-modelo","DELETE","delete/{p}","delete");
 
 // Foto
 $Rotas->group("api-foto","api/foto","Api\Foto");
-$Rotas->onGroup("api-foto","POST","insert","insert");
+$Rotas->onGroup("api-foto","POST","insert/{p}","insert");
 $Rotas->onGroup("api-foto","DELETE","delete/{p}","delete");
 
 

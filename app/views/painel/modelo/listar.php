@@ -44,7 +44,7 @@
                         <tbody>
                             <?php if (!empty($modelos)) : ?>
                                 <?php foreach ($modelos as $modelo) : ?>
-                                    <tr>
+                                    <tr id="tb_<?= $modelo->id_modelo ?>">
                                         <td><?= $modelo->nome ?></td>
                                         <td><?= $modelo->cpf ?></td>
                                         <td><?= $modelo->telefone ?></td>
@@ -60,12 +60,12 @@
                                         </td>
 
                                         <td class="text-center">
-                                            <a href="<?= BASE_URL ?>fornecedor/editar/<?= $fornecedor->id_fornecedor ?>"
+                                            <a href="<?= BASE_URL ?>modelo/editar/<?= $modelo->id_modelo ?>"
                                                class="btn btn-primary btn-sm"
                                                style="padding: 10px;font-size: 13px;font-weight: 800;margin-right: 10px">EDITAR <i class="far fa-edit"></i></a>
 
-                                            <a href="#" data-id="<?= $fornecedor->id_fornecedor ?>"
-                                               class="btn btn-danger btn-sm excluirModelo"
+                                            <a href="#" data-id="<?= $modelo->id_modelo ?>"
+                                               class="btn btn-danger btn-sm deletarModelo"
                                                style="padding: 10px;font-size: 13px;font-weight: 800">EXCLUIR <i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
