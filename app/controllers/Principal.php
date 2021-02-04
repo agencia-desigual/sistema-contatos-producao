@@ -202,7 +202,7 @@ class Principal extends Controller
             // Abre o arquivo
             $conteudo = file_get_contents($arquivo);
 
-            $packer = new Packer($conteudo);
+            $packer = new Packer($conteudo,"Normal", true, true, false);
             $packed_js = $packer->pack();
             echo $packed_js;
         }
