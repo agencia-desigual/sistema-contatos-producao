@@ -68,6 +68,7 @@ $Rotas->on("GET","sair","Principal::sair");
 
 // Página inicial
 $Rotas->on("GET","","Principal::index");
+$Rotas->on("GET","painel","Principal::painel");
 
 // Js criptografia
 $Rotas->on("GET","public/{p}","Principal::criptografaJs");

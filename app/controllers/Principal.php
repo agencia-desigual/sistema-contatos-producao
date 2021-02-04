@@ -35,28 +35,18 @@ class Principal extends Controller
     } // End >> fun::__construct()
 
 
-<<<<<<< HEAD
+
     /**
      * Métood responsável por exibir a página de cadastro
      * para modelos.
      * -----------------------------------------------------------------
      * @url BASE_URL
-=======
-
-    /**
-     * Método responsável por responsável por carregar a página de
-     * dashboard do usuario buscando todos os dados antes.
-     * -------------------------------------------------------------------
-     * @url painel
->>>>>>> 111797092dc6030861e40560c2ed406c19a68555
-     * @method GET
      */
     public function index()
     {
         // Variaveis
         $dados = null;
 
-<<<<<<< HEAD
         // Dados
         $dados = [
             "js" => [
@@ -66,7 +56,20 @@ class Principal extends Controller
 
         // Chama a view
         $this->view("site/index", $dados);
-=======
+
+    } // End >> fun::index()
+
+
+
+    /**
+     * Método responsável por responsável por carregar a página de
+     * dashboard do usuario buscando todos os dados antes.
+     * -------------------------------------------------------------------
+     * @url painel
+     * @method GET
+     */
+    public function painel()
+    {
         // Verifica se está logado
         $usuario = $this->objHelperApoio->seguranca();
 
@@ -107,9 +110,7 @@ class Principal extends Controller
         // Carrega a view
         $this->view("dashboard",$dados);
     }
->>>>>>> 111797092dc6030861e40560c2ed406c19a68555
 
-    } // End >> fun::index()
 
 
 

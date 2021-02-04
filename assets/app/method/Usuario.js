@@ -84,7 +84,7 @@ $("#formLogin").on("submit", function () {
             setTimeout(() => {
 
                 // Verifica qual é o usuario
-                location.href = Global.config.url;
+                location.href = Global.config.url + "painel";
 
             }, 600);
         })
