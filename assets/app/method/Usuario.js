@@ -28,7 +28,7 @@ $("#formInserirUsuario").on("submit", function(){
         .then((data) => {
 
             // Avisa que deu certo
-            Global.setSuccess(data.mensagem);
+            alertify.success("Usuário cadastrado !");
 
             // Limpa o formulário
             Global.limparFormulario("#formInserirUsuario");
@@ -133,16 +133,8 @@ $("#formAlteraUsuario").on("submit", function () {
     Global.enviaApi("PUT", url, form, token.token, tipoAlerta)
         .then((data) => {
 
-            // Verifica o alerta
-            if(tipoAlerta === "swal")
-            {
-                Global.setSuccess(data.mensagem);
-            }
-            else
-            {
-                // Avisa que deu certo
-                alertify.success(data.mensagem);
-            }
+            // Avisa que deu certo
+            alertify.success("Usuário alterado !");
 
 
             // Verifica se deve atualizar a página

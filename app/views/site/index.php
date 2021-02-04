@@ -136,13 +136,13 @@
                             </div>
 
                             <div class="form-group pt-1">
-                                <label>Seu altura</label>
-                                <input type="text" name="altura" placeholder="ex: 1,76" class="form-control">
+                                <label>Sua altura</label>
+                                <input type="text" name="altura" placeholder="ex: 1.76" class="form-control maskAltura">
                             </div>
 
                             <div class="form-group pt-1">
                                 <label>Numero que calça</label>
-                                <input type="text" name="altura" placeholder="ex: 37" class="form-control">
+                                <input type="text" name="calcado" placeholder="ex: 37" class="form-control">
                             </div>
                         </div>
 

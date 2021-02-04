@@ -63,7 +63,7 @@ $("#formCadastraModeloPainel").on("submit", function () {
         .then((data) => {
 
             // Avisa que deu certo
-            Global.setSuccess("Modelo cadastrado!");
+            alertify.success("Modelo cadastrado !");
 
             // Atualiza a página
             setTimeout(() => {

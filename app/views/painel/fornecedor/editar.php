@@ -84,8 +84,10 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12 text-right">
-                                <button type="submit" style="background-color: #CB245E; border-color: #CB245E;" class="btn btn-primary">Alterar</button>
+                            <div class="col-md-12">
+                                <button style="font-weight: bold; background-color: #CB245E; border: 2px solid #CB245E" type="submit" class="btn btn-primary waves-effect waves-light">
+                                    EDITAR
+                                </button>
                             </div>
                         </div>
                     </form>

@@ -23,7 +23,7 @@ $("#formCadastrarCategoria").on("submit", function () {
         .then((data) => {
 
             // Avisa que deu certo
-            Global.setSuccess("Cadastro realizado !");
+            alertify.success("Cadastro realizado !");
 
             // Atualiza a página
             setTimeout(() => {
@@ -65,7 +65,7 @@ $("#formEditarCategoria").on("submit", function () {
         .then((data) => {
 
             // Avisa que deu certo
-            Global.setSuccess("Categoria atualizada !");
+            alertify.success("Categoria atualizada !");
 
             // Atualiza a página
             setTimeout(() => {

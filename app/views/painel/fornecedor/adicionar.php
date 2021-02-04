@@ -54,8 +54,8 @@
                         <div class="row">
                             <div class="col-md-6 pt-2">
                                 <div class="form-group">
-                                    <label>Telefone</label>
-                                    <input type="text" name="telefone" class="form-control" />
+                                    <label>Telefone / Celular</label>
+                                    <input type="text" name="telefone" class="form-control maskTelCel" />
                                 </div>
                             </div>
 
@@ -85,8 +85,8 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12 text-right">
-                                <button type="submit" style="background-color: #CB245E; border-color: #CB245E;" class="btn btn-primary">Cadastrar</button>
+                            <div class="col-md-12">
+                                <button type="submit" style="background-color: #CB245E; border-color: #CB245E;" class="btn btn-primary">CADASTRAR</button>
                             </div>
                         </div>
                     </form>

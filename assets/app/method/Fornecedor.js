@@ -31,7 +31,7 @@ $("#formAdicionarFornecedor").on("submit", function () {
 
             // Limpa o formulário
             setTimeout(() => {
-                location.href = Global.config.url + "fornecedor/editar/" + data.objeto.id_fornecedor;
+                location.reload();
             }, 1500);
 
         })
@@ -81,6 +81,11 @@ $("#formAlteraFornecedor").on("submit", function () {
 
             // Avisa que deu certo
             alertify.success(data.mensagem);
+
+            setTimeout(function () {
+                location.reload();
+            },1500)
+
         })
         .catch(e => {
 
