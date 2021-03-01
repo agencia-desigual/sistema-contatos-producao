@@ -3,7 +3,9 @@
 // Dados importantes
 var Dados = {
     "url": "http://localhost/git/sistema-contatos-producao/",
-    "urlApi": "http://localhost/git/sistema-contatos-producao/api/"
+    "urlApi": "http://localhost/git/sistema-contatos-producao/api/",
+    // "url": "https://desigual.com.br/casting/",
+    // "urlApi": "https://desigual.com.br/casting/api/"
 }
 
 

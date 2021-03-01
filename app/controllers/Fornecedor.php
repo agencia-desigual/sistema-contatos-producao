@@ -51,6 +51,21 @@ class Fornecedor extends Controller
         $fornecedores = $this->objModelFornecedor
             ->get()->fetchAll(\PDO::FETCH_OBJ);
 
+        // Verifica se tem fornecedores
+        if (!empty($fornecedores))
+        {
+            // Percorre todos fornecedores
+            foreach ($fornecedores as $fornecedor)
+            {
+                $categoria = $this->objModelCategoria
+                    ->get(["id_categoria" => $fornecedor->id_categoria])
+                    ->fetch(\PDO::FETCH_OBJ);
+
+                // Vinculando
+                $fornecedor->categoria = $categoria->nome;
+            }
+        }
+
         // Dados da view
         $dados = [
             "fornecedores" => $fornecedores,

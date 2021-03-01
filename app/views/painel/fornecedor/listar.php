@@ -32,7 +32,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Telefone</th>
-                            <th>Email</th>
+                            <th>Categoria</th>
                             <th>Cidade</th>
                             <th class="text-center">Acôes</th>
                         </tr>
@@ -45,7 +45,7 @@
                                     <tr id="tb_<?= $fornecedor->id_fornecedor; ?>">
                                         <td><?= $fornecedor->nome ?></td>
                                         <td><?= $fornecedor->telefone ?></td>
-                                        <td><?= $fornecedor->email ?></td>
+                                        <td><?= $fornecedor->categoria ?></td>
                                         <td><?= $fornecedor->cidade ?></td>
                                         <td class="text-center">
                                             <a href="<?= BASE_URL ?>fornecedor/editar/<?= $fornecedor->id_fornecedor ?>"
