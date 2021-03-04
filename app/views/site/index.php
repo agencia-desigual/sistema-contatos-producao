@@ -62,7 +62,7 @@
                 <div>
                     <figure><img src="<?= BASE_URL; ?>assets/custom/img/icone.png" alt="" class="img-fluid" width="370"></figure>
                     <h2>Queremos Você!</h2>
-                    <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto patrioque an per, lucilius pertinacia eu vel.</p>
+                    <p>Quer fazer parte e abrilhantar ainda mais as nossas produções? Preencha o formulário ao lado. Caso seu perfil se encaixe em alguns de nossos jobs entraremos em contato. Boa Sorte!</p>
                 </div>
                 <div class="copy">© <?= date("Y"); ?> - Desigual</div>
             </div>
