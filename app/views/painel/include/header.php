@@ -107,7 +107,7 @@
 
                             <!-- DASHBOARD -->
                             <li class="has-submenu">
-                                <a href="<?= BASE_URL; ?>"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                                <a href="<?= BASE_URL; ?>painel"><i class="fas fa-chart-pie"></i> Dashboard</a>
                             </li>
                             <!-- FIM >> DASHBOARD -->
 

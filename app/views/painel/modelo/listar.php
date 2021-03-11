@@ -27,15 +27,15 @@
                     <p class="sub-title../plugins">
                         Abaixo estão todos os modelos que você pode gerenciar no sistema.
                     </p>
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table id="aaa" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Telefone</th>
                             <th>Idade</th>
-                            <th>Cidade / Estado</th>
                             <th class="text-center">Canal</th>
+                            <th class="text-center">Data Cadastro</th>
                             <th class="text-center">Acôes</th>
                         </tr>
                         </thead>
@@ -49,7 +49,6 @@
                                         <td><?= $modelo->cpf ?></td>
                                         <td><?= $modelo->telefone ?></td>
                                         <td><?= $modelo->idade ?></td>
-                                        <td><?= $modelo->cidade.' / '.$modelo->estado ?></td>
 
                                         <td class="text-center">
                                             <?php if ($modelo->canal == "sistema") : ?>
@@ -58,6 +57,7 @@
                                                 <span style="padding: 10px;font-size: 15px;font-weight: 600;" class="badge badge-success">SITE</span>
                                             <?php endif; ?>
                                         </td>
+                                        <td><span class="d-none"><?= date("YmdHis",strtotime($modelo->cadastro)) ?></span><?= date("d/m/Y H:i:s", strtotime($modelo->cadastro)) ?></td>
 
                                         <td class="text-center">
                                             <a href="<?= BASE_URL ?>modelo/editar/<?= $modelo->id_modelo ?>"
@@ -84,3 +84,11 @@
     <!-- FIM >> TABELA -->
 
 <?php $this->view("painel/include/footer"); ?>
+
+<script>
+    $(document).ready(function() {
+        $('#aaa').DataTable( {
+            "order": [[ 5, "desc" ]]
+        } );
+    } );
+</script>
