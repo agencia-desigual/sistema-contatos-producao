@@ -37,6 +37,24 @@ $Rotas->onGroup("api-fornecedor","PUT","update/{p}","update");
 $Rotas->onGroup("api-fornecedor","DELETE","delete/{p}","delete");
 
 
+// Empresa
+$Rotas->group("api-empresa","api/empresa","Api\Empresa");
+$Rotas->onGroup("api-empresa","GET","get","getAll");
+$Rotas->onGroup("api-empresa","GET","get/{p}","get");
+$Rotas->onGroup("api-empresa","POST","insert","insert");
+$Rotas->onGroup("api-empresa","PUT","update/{p}","update");
+$Rotas->onGroup("api-empresa","DELETE","delete/{p}","delete");
+
+
+// Financeiro
+$Rotas->group("api-financeiro","api/financeiro","Api\Financeiro");
+$Rotas->onGroup("api-financeiro","GET","get","getAll");
+$Rotas->onGroup("api-financeiro","GET","get/{p}","get");
+$Rotas->onGroup("api-financeiro","POST","insert","insert");
+$Rotas->onGroup("api-financeiro","POST","update/{p}","update");
+$Rotas->onGroup("api-financeiro","DELETE","delete/{p}","delete");
+
+
 // Modelo
 $Rotas->group("api-modelo","api/modelo","Api\Modelo");
 $Rotas->onGroup("api-modelo","GET","get","getAll");
@@ -92,3 +110,13 @@ $Rotas->on("GET","fornecedor/editar/{p}","Fornecedor::editar");
 $Rotas->on("GET","modelos","Modelo::listar");
 $Rotas->on("GET","modelo/adicionar","Modelo::adicionar");
 $Rotas->on("GET","modelo/editar/{p}","Modelo::editar");
+
+// Financeiro
+$Rotas->on("GET","financeiros","Financeiro::listar");
+$Rotas->on("GET","financeiro/adicionar","Financeiro::adicionar");
+$Rotas->on("GET","financeiro/editar/{p}","Financeiro::editar");
+
+// Empresa
+$Rotas->on("GET","empresas","Empresa::listar");
+$Rotas->on("GET","empresa/adicionar","Empresa::adicionar");
+$Rotas->on("GET","empresa/editar/{p}","Empresa::editar");

@@ -10,7 +10,7 @@
     <meta content="Themesdesign" name="author" />
     <link rel="shortcut icon" href="https://desigual.com.br/site/arquivos/assets/img/favicon.png">
 
-    <!--Morris Chart CSS -->
+    <!-- Morris Chart CSS -->
     <link rel="stylesheet" href="<?= BASE_URL; ?>assets/theme/stexoplugins/morris/morris.css">
 
     <link href="<?= BASE_URL; ?>assets/theme/stexo/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -175,6 +175,21 @@
                                 </ul>
                             </li>
                             <!-- FIM >> USUÁRIOS -->
+
+                            <!-- FINANCEIRO -->
+                            <li class="has-submenu">
+
+                                <a href="#"><i class="far fa-money-bill-alt"></i> Financeiro <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="<?= BASE_URL; ?>financeiro/adicionar">Adiconar nota</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= BASE_URL ?>financeiros">Todos as notas</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- FIM >> FINANCEIRO -->
 
                         </ul>
                     </div>
