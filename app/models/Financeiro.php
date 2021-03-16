@@ -35,7 +35,7 @@ class Financeiro extends Database
         $this->conexao = parent::getConexao();
 
         // Seta o nome da tablea
-        parent::setTable("empresa");
+        parent::setTable("financeiro");
 
     } // END >> Fun::__construct()
 
