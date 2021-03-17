@@ -66,6 +66,14 @@ class Financeiro extends Controller
 
                 // Vincula a empresa
                 $nota->empresa = $empresa->nome;
+
+                // Formata o valor
+                $nota->valor = number_format($nota->valor,2,",",".");
+
+                if (!empty($nota->arquivo))
+                {
+                    $nota->arquivo = BASE_STORAGE . 'financeiro/' . $nota->arquivo;
+                }
             }
         }
 
@@ -148,6 +156,17 @@ class Financeiro extends Controller
             $empresas = $this->objModelEmpresa
                 ->get()
                 ->fetchAll(\PDO::FETCH_OBJ);
+
+            // Formata o valor
+            $nota->valor = number_format($nota->valor,2,",",".");
+
+            // Formata a data
+            $nota->data = date('Y-m-d', strtotime($nota->data));
+
+            if (!empty($nota->arquivo))
+            {
+                $nota->arquivo = BASE_STORAGE . 'financeiro/' . $nota->arquivo;
+            }
 
         }
 

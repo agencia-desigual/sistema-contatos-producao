@@ -4,12 +4,12 @@
     <div class="page-title-box">
         <div class="row align-items-center">
             <div class="col-sm-6">
-                <h4 class="page-title">Modelos</h4>
+                <h4 class="page-title">Notas Financeira</h4>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-right">
                     <li class="breadcrumb-item"><a href="<?= BASE_URL ?>painel"><?= SITE_NOME ?></a></li>
-                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>modelos">Modelos</a></li>
+                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>financeiros">Notas financeira</a></li>
                     <li class="breadcrumb-item active">Adicionar</li>
                 </ol>
             </div>
@@ -23,139 +23,47 @@
             <div class="card m-b-30">
                 <div class="card-body">
 
-                    <h4 class="mt-0 header-title">Adicionar Modelo</h4>
-                    <p class="sub-title">Adicione um novo modelo.</p>
+                    <h4 class="mt-0 header-title">Adicionar Nota financeira</h4>
+                    <p class="sub-title">Adicione uma nova nota para gestão financeira.</p>
 
-                    <form id="formCadastraModeloPainel">
-                        <input type="hidden" name="canal" value="sistema">
+                    <form id="formCadastrarNota">
+
                         <div class="row">
 
-                            <!-- NOME -->
-                            <div class="col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label>NOME</label>
-                                    <input type="text" name="nome" class="form-control" required="">
-                                </div>
-                            </div>
-
-                            <!-- CPF -->
-                            <div class="col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label>CPF</label>
-                                    <input type="tel" name="cpf" class="form-control maskCPF" required="">
-                                </div>
-                            </div>
-
-                            <!-- TELEFONE / CELULAR -->
+                            <!-- EMPRESA -->
                             <div class="col-md-4 mb-3">
                                 <div class="form-group">
-                                    <label>TELEFONE / CELULAR</label>
-                                    <input type="tel" name="telefone" class="form-control maskTelCel" required="">
-                                </div>
-                            </div>
-
-                            <!-- DATA NASCIMENTO -->
-                            <div class="col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label>DATA NASCIMENTO</label>
-                                    <input type="date" name="dataNascimento" class="form-control" required="">
-                                </div>
-                            </div>
-
-                            <!-- SEXO -->
-                            <div class="col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label>SEXO</label>
-                                    <select class="form-control" name="sexo">
-                                        <option selected disabled>Selecione</option>
-                                        <option value="feminino">Feminino</option>
-                                        <option value="masculino">Masculino</option>
+                                    <label>Empresa</label>
+                                    <select name="id_cliente" class="form-control" required="">
+                                        <option selected disabled> Selecione </option>
+                                        <?php foreach ($empresas as $empresa) : ?>
+                                            <option value="<?= $empresa->id_cliente ?>"><?= $empresa->nome ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
 
-                            <!-- ETNIA -->
-                            <div class="col-md-3 mb-3">
+                            <!-- DATA -->
+                            <div class="col-md-4 mb-3">
                                 <div class="form-group">
-                                    <label>ETNIA</label>
-                                    <input type="text" name="etnia" class="form-control">
+                                    <label>Data</label>
+                                    <input type="date" name="data" class="form-control" required="" value="<?= date('Y-m-d') ?>" >
                                 </div>
                             </div>
 
-                            <!-- MANEQUIM -->
-                            <div class="col-md-3 mb-3">
+                            <!-- VALOR -->
+                            <div class="col-md-4 mb-3">
                                 <div class="form-group">
-                                    <label>MANEQUIM</label>
-                                    <input type="text" name="manequim" class="form-control">
+                                    <label>Valor</label>
+                                    <input type="tel" name="valor" class="form-control maskValor" required="">
                                 </div>
                             </div>
 
-                            <!-- CALÇADO -->
-                            <div class="col-md-3 mb-3">
-                                <div class="form-group">
-                                    <label>CALÇADO</label>
-                                    <input type="tel" name="calcado" class="form-control maskCalcado">
-                                </div>
-                            </div>
-
-                            <!-- ALTURA -->
-                            <div class="col-md-3 mb-3">
-                                <div class="form-group">
-                                    <label>ALTURA</label>
-                                    <input type="tel" name="altura" class="form-control maskAltura">
-                                </div>
-                            </div>
-
-                            <!-- CIDADE -->
-                            <div class="col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label>CIDADE</label>
-                                    <input type="text" name="cidade" class="form-control" required="">
-                                </div>
-                            </div>
-
-                            <!-- ESTADO -->
-                            <div class="col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label>ESTADO</label>
-                                    <select name="estado" class="form-control" required>
-                                        <option selected disabled>Selecione</option>
-                                        <option value="AC">Acre</option>
-                                        <option value="AL">Alagoas</option>
-                                        <option value="AP">Amapá</option>
-                                        <option value="AM">Amazonas</option>
-                                        <option value="BA">Bahia</option>
-                                        <option value="CE">Ceará</option>
-                                        <option value="ES">Espírito Santo</option>
-                                        <option value="GO">Goiás</option>
-                                        <option value="MA">Maranhão</option>
-                                        <option value="MT">Mato Grosso</option>
-                                        <option value="MS">Mato Grosso do Sul</option>
-                                        <option value="MG">Minas Gerais</option>
-                                        <option value="PA">Pará</option>
-                                        <option value="PB">Paraíba</option>
-                                        <option value="PR">Paraná</option>
-                                        <option value="PE">Pernambuco</option>
-                                        <option value="PI">Piauí</option>
-                                        <option value="RJ">Rio de Janeiro</option>
-                                        <option value="RN">Rio Grande do Norte</option>
-                                        <option value="RS">Rio Grande do Sul</option>
-                                        <option value="RO">Rondônia</option>
-                                        <option value="RR">Roraima</option>
-                                        <option value="SC">Santa Catarina</option>
-                                        <option value="SP">São Paulo</option>
-                                        <option value="SE">Sergipe</option>
-                                        <option value="TO">Tocantins</option>
-                                        <option value="DF">Distrito Federal</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- ATUAÇÃO -->
+                            <!-- ARQUIVO -->
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
-                                    <label>ATUAÇÃO</label>
-                                    <textarea class="form-control" rows="4" name="atuacao"></textarea>
+                                    <label>Comprovante</label>
+                                    <input name="arquivo" type="file" class="dropify">
                                 </div>
                             </div>
 
@@ -168,6 +76,7 @@
                                 </button>
                             </div>
                         </div>
+
                     </form>
 
                 </div>
@@ -177,3 +86,12 @@
     <!-- FIM >> TABELA -->
 
 <?php $this->view("painel/include/footer"); ?>
+<script>
+    $(document).ready(function(){
+
+        // Basic
+        $('.dropify').dropify();
+
+    });
+</script>
+

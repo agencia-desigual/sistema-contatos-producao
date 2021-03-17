@@ -51,12 +51,16 @@ class Financeiro extends Controller
 
         // Busca a empresa
         $empresa = $this->objModelEmpresa
-            ->get(["id_empresa" => $post['id_cliente']])
+            ->get(["id_cliente" => $post['id_cliente']])
             ->fetch(\PDO::FETCH_OBJ);
 
         // Verifica se a empresa existe
         if(!empty($empresa))
         {
+
+            // Limpa o valor
+            $post["valor"] = str_replace(".","", $post["valor"]);
+            $post["valor"] = str_replace(",",".", $post["valor"]);
 
             // Monta a array de insert
             $salva = [
@@ -148,7 +152,7 @@ class Financeiro extends Controller
      * @url api/financeiro/update/id
      * @method POST
      */
-    public function update($idFornecedor)
+    public function update($idFinanceiro)
     {
         // Variaveis
         $dados = null;
@@ -160,12 +164,17 @@ class Financeiro extends Controller
 
         // Busca a nota
         $nota = $this->objModelFinanceiro
-            ->get(["id_fornecedor" => $idFornecedor])
+            ->get(["id_financeiro" => $idFinanceiro])
             ->fetch(\PDO::FETCH_OBJ);
 
 
         if (!empty($nota))
         {
+
+            // Limpa o valor
+            $post["valor"] = str_replace(".","", $post["valor"]);
+            $post["valor"] = str_replace(",",".", $post["valor"]);
+
             // Monta a array de insert
             $update = [
                 "id_cliente" => (!empty($post['id_cliente']) ? $post['id_cliente'] : $nota->id_cliente),
@@ -206,8 +215,11 @@ class Financeiro extends Controller
                         // Monta o array de inserção
                         $update["arquivo"] = $arquivo;
 
-                        // Remove o arquivo antigo
-                        unlink("./storage/financeiro/" . $nota->arquivo);
+                        if (!empty($nota->arquivo))
+                        {
+                            // Remove o arquivo antigo
+                            unlink("./storage/financeiro/" . $nota->arquivo);
+                        }
 
                     }
                     else
@@ -223,20 +235,20 @@ class Financeiro extends Controller
                 } // Error >> Informe um arquivo de no máximo 10MB
             }
 
-            // Salva no banco
-            if ($this->objModelFinanceiro->insert($salva))
+            // Atualiza no banco
+            if ($this->objModelFinanceiro->update($update,["id_financeiro" => $idFinanceiro]))
             {
                 // Retorno de sucesso.
                 $dados = [
                     "tipo" => true,
                     "code" => 200,
-                    "mensagem" => "Nota financeira cadastrada com sucesso!."
+                    "mensagem" => "Nota financeira alterada com sucesso!."
                 ];
             }
             else
             {
                 // Msg
-                $dados = ["mensagem" => "Erro ao inserir nota financeira."];
+                $dados = ["mensagem" => "Erro ao alterar nota financeira."];
             } // Error >> Erro ao inserir nota financeira.
         }
         else
@@ -281,8 +293,14 @@ class Financeiro extends Controller
             // Deleta a imagem
             if($this->objModelFinanceiro->delete(["id_financeiro" => $idFinanceiro]) != false)
             {
+
                 // Deleta o arquivo do servidor
-                unlink("./storage/financeiro/" . $obj->arquivo);
+                if (!empty($obj->arquivo))
+                {
+                    // Remove o arquivo
+                    unlink("./storage/financeiro/" . $obj->arquivo);
+                }
+
 
                 // Retorno de sucesso.
                 $dados = [
