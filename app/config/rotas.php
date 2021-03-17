@@ -42,7 +42,7 @@ $Rotas->group("api-empresa","api/empresa","Api\Empresa");
 $Rotas->onGroup("api-empresa","GET","get","getAll");
 $Rotas->onGroup("api-empresa","GET","get/{p}","get");
 $Rotas->onGroup("api-empresa","POST","insert","insert");
-$Rotas->onGroup("api-empresa","PUT","update/{p}","update");
+$Rotas->onGroup("api-empresa","POST","update/{p}","update");
 $Rotas->onGroup("api-empresa","DELETE","delete/{p}","delete");
 
 

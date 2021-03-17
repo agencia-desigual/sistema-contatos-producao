@@ -13,6 +13,7 @@ class Empresa extends Controller
 {
     // Objetos
     private $objModelEmpresa;
+    private $objModelFinanceiro;
     private $objSeguranca;
 
     // Método construtor
@@ -23,6 +24,7 @@ class Empresa extends Controller
 
         // Instancia os objetos
         $this->objModelEmpresa = new \Model\Empresa();
+        $this->objModelFinanceiro = new \Model\Financeiro();
         $this->objSeguranca = new Seguranca();
 
     } // End >> fun::__construct()
@@ -49,7 +51,7 @@ class Empresa extends Controller
         $where = null;
 
         // where
-        $where = ["id_empresa" => $id];
+        $where = ["id_cliente" => $id];
 
         // Busca o objeto
         $objeto = $this->objModelEmpresa->get($where);
@@ -177,7 +179,7 @@ class Empresa extends Controller
             {
                 // Busca o objeto inserido
                 $obj = $this->objModelEmpresa
-                    ->get(["id_empresa" => $obj])
+                    ->get(["id_cliente" => $obj])
                     ->fetch(\PDO::FETCH_OBJ);
 
                 // Retorno
@@ -228,14 +230,14 @@ class Empresa extends Controller
 
         // Recupera os dados put
         $objInput = new Input();
-        $put = $objInput->put();
+        $put = $_POST;
 
         // Remove os dados não alteraveis
-        unset($put["id_empresa"]);
+        unset($put["id_cliente"]);
 
         // Busca o objeto atual
         $obj = $this->objModelEmpresa
-            ->get(["id_empresa" => $id])
+            ->get(["id_cliente" => $id])
             ->fetch(\PDO::FETCH_OBJ);
 
         // Verifiva se encontrou
@@ -245,11 +247,11 @@ class Empresa extends Controller
             if(!empty($put))
             {
                 // Altera as informações
-                if($this->objModelEmpresa->update($put,["id_empresa " => $obj->id_empresa]))
+                if($this->objModelEmpresa->update($put,["id_cliente " => $obj->id_cliente]))
                 {
                     // Busca o objeto alterado
                     $objAlterado = $this->objModelEmpresa
-                        ->get(["id_empresa" => $id])
+                        ->get(["id_cliente" => $id])
                         ->fetch(\PDO::FETCH_OBJ);
 
                     // Retorno
@@ -307,28 +309,42 @@ class Empresa extends Controller
 
         // Busca o objeto a ser deletado
         $obj = $this->objModelEmpresa
-            ->get(["id_empresa" => $id])
+            ->get(["id_cliente" => $id])
             ->fetch(\PDO::FETCH_OBJ);
 
         // Verifica se existe
         if(!empty($obj))
         {
-            // Deleta o usuário
-            if($this->objModelEmpresa->delete(["id_empresa" => $id]))
+
+            // Verifica se tem vinculação com financeiro
+            $buscaFinanceiro = $this->objModelFinanceiro
+                ->get(["id_cliente" => $obj->id_cliente]);
+
+            if ($buscaFinanceiro->rowCount() == 0)
             {
-                // Retorno
-                $dados = [
-                    "tipo" => true,
-                    "code" => 200,
-                    "mensagem" => "A empresa foi deletado com sucesso.",
-                    "objeto" => $obj
-                ];
+                // Deleta o usuário
+                if($this->objModelEmpresa->delete(["id_cliente" => $id]))
+                {
+                    // Retorno
+                    $dados = [
+                        "tipo" => true,
+                        "code" => 200,
+                        "mensagem" => "A empresa foi deletado com sucesso.",
+                        "objeto" => $obj
+                    ];
+                }
+                else
+                {
+                    // Msg
+                    $dados = ["mensagem" => 'Ocorre um erro ao tentar deletar.'];
+                } // Error >> Ocorre um erro ao tentar deletar.
             }
             else
             {
                 // Msg
-                $dados = ["mensagem" => 'Ocorre um erro ao tentar deletar.'];
-            } // Error >> Ocorre um erro ao tentar deletar.
+                $dados = ["mensagem" => 'Essa empresa está vinculada em alguma nota financeira e não pode ser excluída.'];
+            } // Error >> Essa empresa está vinculada em alguma nota financeira..
+
         }
         else
         {

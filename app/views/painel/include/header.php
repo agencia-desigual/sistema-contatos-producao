@@ -191,6 +191,21 @@
                             </li>
                             <!-- FIM >> FINANCEIRO -->
 
+                            <!-- EMPRESA -->
+                            <li class="has-submenu">
+
+                                <a href="#"><i class="fas fa-home"></i> Empresa <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="<?= BASE_URL; ?>empresa/adicionar">Adiconar empresa</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= BASE_URL ?>empresas">Todos as empresas</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- FIM >> EMPRESA -->
+
                         </ul>
                     </div>
 
