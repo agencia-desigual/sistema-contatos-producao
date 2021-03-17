@@ -19,6 +19,8 @@ class Principal extends Controller
     private $objHelperApoio;
     private $objModelModelo;
     private $objModelFornecedor;
+    private $objModelFinanceiro;
+    private $objModelEmpresa;
 
     // Método construtor
     public function __construct()
@@ -31,6 +33,8 @@ class Principal extends Controller
         $this->objModelModelo = new Modelo();
         $this->objModelFornecedor = new Fornecedor();
         $this->objHelperApoio = new Apoio();
+        $this->objModelFinanceiro = new \Model\Financeiro();
+        $this->objModelEmpresa = new \Model\Empresa();
 
     } // End >> fun::__construct()
 
@@ -212,5 +216,62 @@ class Principal extends Controller
             $this->error();
         } // Error >> 404
     }
+
+
+
+    public function relatorio($inicio,$fim,$id_empresa = 0)
+    {
+        // Variaveis
+        $dados = null;
+        $financeiro = null;
+        $usuario = null;
+        $sql = null;
+
+        if ($id_empresa == 0)
+        {
+            $sql = "SELECT * FROM financeiro WHERE data BETWEEN '{$inicio}' AND '{$fim}' ORDER BY id_financeiro DESC";
+        }
+        else
+        {
+            $sql = "SELECT * FROM financeiro WHERE data BETWEEN '{$inicio}' AND '{$fim}' AND id_cliente = {$id_empresa} ORDER BY id_financeiro DESC";
+        }
+
+
+        // Busca o objeto a ser deletado
+        $financeiro = $this->objModelFinanceiro
+            ->query($sql)
+            ->fetchAll(\PDO::FETCH_OBJ);
+
+        if (!empty($financeiro))
+        {
+            // Percorre todos
+            foreach ($financeiro as $nota)
+            {
+                // Busca a empresa
+                $empresa = $this->objModelEmpresa
+                    ->get(["id_cliente" => $nota->id_cliente])
+                    ->fetch(\PDO::FETCH_OBJ);
+
+                $nota->empresa = $empresa;
+            }
+
+            // Dados.
+            $dados = [
+                "notas" => $financeiro,
+            ];
+
+            // Carrega a view do relatorio
+            $this->view("painel/financeiro/relatorio",$dados);
+
+        }
+        else
+        {
+            echo "Nenhuma nota financeira foi encotrada tente outra data.";
+
+        } // Error >> Ocorreu um erro ao deletar a nota financeira.
+
+
+    } // End >> fun::relatorio()
+
 
 } // End >> Class::Principal

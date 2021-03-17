@@ -47,7 +47,7 @@ class Financeiro extends Controller
         // Variaveis
         $dados = null;
         $notas = null;
-        $empresas = null;
+        $listaEmpresas = null;
 
         // Busca as notas
         $notas = $this->objModelFinanceiro
@@ -75,11 +75,18 @@ class Financeiro extends Controller
                     $nota->arquivo = BASE_STORAGE . 'financeiro/' . $nota->arquivo;
                 }
             }
+
+            // Busca todas empresas
+            $listaEmpresas = $this->objModelEmpresa
+                ->get()
+                ->fetchAll(\PDO::FETCH_OBJ);
+
         }
 
         // Dados da view
         $dados = [
             "notas" => $notas,
+            "empresas" => $listaEmpresas,
             "js" => [
                 "modulos" => ["Nota"]
             ]

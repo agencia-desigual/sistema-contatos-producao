@@ -115,6 +115,7 @@ $Rotas->on("GET","modelo/editar/{p}","Modelo::editar");
 $Rotas->on("GET","financeiros","Financeiro::listar");
 $Rotas->on("GET","financeiro/adicionar","Financeiro::adicionar");
 $Rotas->on("GET","financeiro/editar/{p}","Financeiro::editar");
+$Rotas->on("GET","financeiro/relatorio/{p}/{p}/{p}","Principal::relatorio");
 
 // Empresa
 $Rotas->on("GET","empresas","Empresa::listar");

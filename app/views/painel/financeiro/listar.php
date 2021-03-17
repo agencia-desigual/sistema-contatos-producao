@@ -27,6 +27,11 @@
                     <p class="sub-title../plugins">
                         Abaixo estão todos as notas financeiras que você pode gerenciar no sistema.
                     </p>
+
+                    <button data-toggle="modal" data-target=".bs-example-modal-center" style="margin-bottom:20px;font-weight: bold; background-color: #CB245E; border: 2px solid #CB245E" type="submit" class="btn btn-primary waves-effect waves-light">
+                        RELATÓRIO
+                    </button>
+
                     <table id="aaa" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
@@ -80,6 +85,67 @@
         </div>
     </div>
     <!-- FIM >> TABELA -->
+
+    <!-- MODAL -->
+    <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0">Relatório Financeiro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="relatorio">
+
+                        <div class="row">
+
+                            <!-- DATA INICIO -->
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label>Data Início</label>
+                                    <input type="date" name="data_inicio" class="form-control" required="" value="" >
+                                </div>
+                            </div>
+
+                            <!-- DATA FIM -->
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label>Data Fim</label>
+                                    <input type="date" name="data_fim" class="form-control" required="" value="<?= date('Y-m-d') ?>" >
+                                </div>
+                            </div>
+
+                            <!-- EMPRESAS -->
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label>Empresas</label>
+                                    <select name="id_empresa" class="form-control">
+                                        <option value="0" selected>Todas</option>
+                                        <?php foreach ($empresas as $empresa) : ?>
+                                            <option value="<?= $empresa->id_cliente ?>"><?= $empresa->nome ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="mt-3">
+                                <button style="width: 100%;font-weight: bold; background-color: #CB245E; border: 2px solid #CB245E" type="submit" class="btn btn-primary waves-effect waves-light">
+                                    GERAR
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM >> MODAL -->
 
 <?php $this->view("painel/include/footer"); ?>
 

@@ -46,6 +46,38 @@ $("#formCadastrarNota").on("submit", function(){
     // Não atualiza mesmo
     return false;
 });
+$("#relatorio").on("submit", function(){
+
+    // Não atualiza a página
+    event.preventDefault();
+
+    // Recupera os dados do formulário
+    var form = new FormData(this);
+    var data_inico = form.get('data_inicio');
+    var data_fim = form.get('data_fim');
+    var id_empresa = form.get('id_empresa');
+
+    // Bloqueia o formulário
+    $(this).addClass("bloqueiaForm");
+
+    // Recupera o url
+    var url = Global.config.url + "financeiro/relatorio/"+data_inico+"/"+data_fim+"/"+id_empresa;
+    console.log(url);
+
+    // Avisa que deu certo
+    alertify.success("Aguarde o redirecionamento !!!");
+
+    // Desbloqueia o formulário
+    $(this).removeClass("bloqueiaForm");
+
+    // Redireciona
+    window.open(url,'_blank');
+
+    $('.bs-example-modal-center').modal('hide')
+
+    // Não atualiza mesmo
+    return false;
+});
 
 
 
