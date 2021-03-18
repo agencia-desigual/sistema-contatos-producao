@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="utf-8">
-    <title>Relatório de Notas Financeiras</title>
-    <head>
-<body>
 <?php
-
-// Definimos o nome do arquivo que será exportado
 $arquivo = 'relatorio-'.date('d-m-y-H-i-s').'.xls';
 
 // Criamos uma tabela HTML com o formato da planilha
