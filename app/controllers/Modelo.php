@@ -4,6 +4,7 @@
 namespace Controller;
 
 // Importações
+use Dompdf\Dompdf;
 use Helper\Apoio;
 use Model\Foto;
 use Sistema\Controller;
@@ -30,50 +31,167 @@ class Modelo extends Controller
     } // End >> fun::__construct()
 
 
+    /**
+     * Método responsável por recuperar o html de outra pagina e solicitar
+     * que ela seja trasnformada em PDF
+     * -------------------------------------------------------------------
+     * @url modelo/relatorio
+     * @method GET
+     */
     public function relatorio()
     {
-        $filtro = $_POST;
+        // Recupera os filtros
+        $filtro = $_GET;
+
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+
+        // Pega o conteudo
+        $html = file_get_contents(BASE_URL . "modelo/imprimir?" . http_build_query($filtro));
+
+        $dompdf->loadHtml($html,'UTF-8');
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream("relatorio.pdf", array("Attachment" => 0));
+
+    } // End >> fun::relatorio()
+
+
+    /**
+     * Método responsável por gerar a página que será
+     * transformada em PDF.
+     * -------------------------------------------------------------------
+     * @url modelo/imprimir
+     * @method GET
+     */
+    public function imprimir()
+    {
+        // Variaveis
+        $filtro = null;
         $sql = "";
-        $where = [];
+
+        // Recupera os filtros
+        $filtro = $_GET;
 
         // Verifica se informou o sexo
-        if ($filtro['sexo'] != "")
+        if (!empty($filtro['sexo']))
         {
             // Monta o where
-            $where['sexo'] = "sexo = '" . $filtro['sexo']. "' AND ";
+            $sql .= "sexo = '{$filtro['sexo']}'";
         }
 
         // Verifica se informou a etnia
-        if ($filtro['etnia'] != "")
+        if(!empty($filtro['etnia']))
         {
+            // Verifica se havia informado outra coisa
+            if(!empty($sql))
+            {
+                // Adiciona o and
+                $sql .= " AND ";
+            }
+
             // Monta o where
-            $where['etnia'] = "etnia = '" . $filtro['etnia']. "' AND ";
+            $sql .= "etnia = '{$filtro['etnia']}'";
         }
 
         // Verifica se informou a manequim
-        if ($filtro['manequim'] != 0)
+        if(!empty($filtro['manequim']))
         {
+            // Verifica se havia informado outra coisa
+            if(!empty($sql))
+            {
+                // Adiciona o and
+                $sql .= " AND ";
+            }
+
             // Monta o where
-            $where['manequim'] = "manequim = '" . $filtro['manequim']. "' AND ";
+            $sql .= "manequim = '{$filtro['manequim']}'";
         }
 
         // Verifica se informou a altura
-        if ($filtro['altura'] != 0)
+        if(!empty($filtro['altura']))
         {
+            // Verifica se havia informado outra coisa
+            if(!empty($sql))
+            {
+                // Adiciona o and
+                $sql .= " AND ";
+            }
+
             // Monta o where
-            $where['altura'] = $filtro['altura'] .' AND ' ;
+            $sql .= "altura = '{$filtro['altura']}'";
         }
 
         // Verifica se informou a calcado
-        if ($filtro['calcado'] != 0)
+        if (!empty($filtro["calcado"]))
         {
+            // Verifica se havia informado outra coisa
+            if(!empty($sql))
+            {
+                // Adiciona o and
+                $sql .= " AND ";
+            }
+
             // Monta o where
-            $where['calcado'] = $filtro['calcado'] .' AND ' ;
+            $sql .= "calcado = '{$filtro['calcado']}'";
         }
 
+        // Monta o sql inicial
+        $sql = (!empty($sql) ? "SELECT * FROM modelo WHERE " . $sql : "SELECT * FROM modelo");
 
-        $this->debug($where);
+        // Busca os modelos
+        $modelos = $this->objModelModelo
+            ->query($sql)
+            ->fetchAll(\PDO::FETCH_OBJ);
+
+        // Percorre os modelos
+        foreach ($modelos as $modelo)
+        {
+            // Calcula a idade
+            $modelo->idade = $this->calcularIdade($modelo->dataNascimento);
+
+            // Busca uma foto
+            $foto = $this->objModelFoto
+                ->get(["id_modelo" => $modelo->id_modelo], "id_foto DESC")
+                ->fetch(\PDO::FETCH_OBJ);
+
+            // Verifica se possui imagem
+            if(!empty($foto))
+            {
+                // Recupera a imagem original
+                $path = './storage/fotos/' . $foto->imagem;
+
+                // Verifica se a imagem existe
+                if(is_file($path))
+                {
+                    // Converte a imagem em base64
+                    $type = pathinfo($path, PATHINFO_EXTENSION);
+                    $data = file_get_contents($path);
+                    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+                    // Adiciona a foto em base64
+                    $modelo->foto = $base64;
+                }
+            }
+        }
+
+        $this->view("painel/modelo/relatorio", ["modelos" => $modelos]);
+    } // End >> fun::imprimir()
+
+
+    private function calcularIdade($date){
+        $dataNascimento = $date;
+        $date = new \DateTime($dataNascimento );
+        $interval = $date->diff( new \DateTime( date('Y-m-d') ) );
+        return $interval->format( '%Y' );
     }
+
 
 
     /**

@@ -126,7 +126,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="relatorioModelos">
+                    <form method="GET" action="<?= BASE_URL; ?>modelo/relatorio">
 
                         <div class="row">
 
