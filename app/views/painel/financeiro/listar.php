@@ -35,6 +35,7 @@
                     <table id="aaa" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
+                            <th>Nome</th>
                             <th>Cliente</th>
                             <th>Valor</th>
                             <th>Arquivo</th>
@@ -49,6 +50,7 @@
                             <?php if (!empty($notas)) : ?>
                                 <?php foreach ($notas as $nota) : ?>
                                     <tr id="tb_<?= $nota->id_financeiro ?>">
+                                        <td><?= $nota->nome ?></td>
                                         <td><?= $nota->empresa ?></td>
                                         <td>R$<?= $nota->valor ?></td>
                                         <td>
@@ -152,7 +154,7 @@
 <script>
     $(document).ready(function() {
         $('#aaa').DataTable( {
-            "order": [[ 4, "desc" ]]
+            "order": [[ 5, "desc" ]]
         } );
     } );
 </script>

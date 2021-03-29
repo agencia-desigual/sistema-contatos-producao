@@ -30,6 +30,51 @@ class Modelo extends Controller
     } // End >> fun::__construct()
 
 
+    public function relatorio()
+    {
+        $filtro = $_POST;
+        $sql = "";
+        $where = [];
+
+        // Verifica se informou o sexo
+        if ($filtro['sexo'] != "")
+        {
+            // Monta o where
+            $where['sexo'] = "sexo = '" . $filtro['sexo']. "' AND ";
+        }
+
+        // Verifica se informou a etnia
+        if ($filtro['etnia'] != "")
+        {
+            // Monta o where
+            $where['etnia'] = "etnia = '" . $filtro['etnia']. "' AND ";
+        }
+
+        // Verifica se informou a manequim
+        if ($filtro['manequim'] != 0)
+        {
+            // Monta o where
+            $where['manequim'] = "manequim = '" . $filtro['manequim']. "' AND ";
+        }
+
+        // Verifica se informou a altura
+        if ($filtro['altura'] != 0)
+        {
+            // Monta o where
+            $where['altura'] = $filtro['altura'] .' AND ' ;
+        }
+
+        // Verifica se informou a calcado
+        if ($filtro['calcado'] != 0)
+        {
+            // Monta o where
+            $where['calcado'] = $filtro['calcado'] .' AND ' ;
+        }
+
+
+        $this->debug($where);
+    }
+
 
     /**
      * Método responsável por responsável por carregar a página de
@@ -50,7 +95,7 @@ class Modelo extends Controller
 
         // Busca os fornecedores
         $modelos = $this->objModelModelo
-            ->get()->fetchAll(\PDO::FETCH_OBJ);
+            ->get("",'id_modelo DESC')->fetchAll(\PDO::FETCH_OBJ);
 
         // Verifica se tem modelo
         if (!empty($modelos))
@@ -58,14 +103,51 @@ class Modelo extends Controller
             // Percorre todos os modelos
             foreach ($modelos as $modelo)
             {
+                // Busca as imagens
+                $imagem = $this->objModelFoto
+                    ->get(["id_modelo" => $modelo->id_modelo])
+                    ->fetchAll(\PDO::FETCH_OBJ);
+
+                // Vincula as imagens
+                $modelo->imagem = $imagem;
+
                 // Calculando a idade
                 $modelo->idade = date("Y") - date("Y",strtotime($modelo->dataNascimento));
             }
+
+            // Busca todas as etnia
+            $sqlEtinias = "SELECT etnia FROM modelo GROUP BY etnia ORDER BY etnia ASC";
+            $etinia = $this->objModelModelo
+                ->query($sqlEtinias)
+                ->fetchAll(\PDO::FETCH_OBJ);
+
+            // Busca todas os manequim
+            $sqlManequim = "SELECT manequim FROM modelo GROUP BY manequim ORDER BY manequim ASC";
+            $manequim = $this->objModelModelo
+                ->query($sqlManequim)
+                ->fetchAll(\PDO::FETCH_OBJ);
+
+            // Busca todas as alturas
+            $sqlAltura = "SELECT altura FROM modelo GROUP BY altura ORDER BY altura ASC";
+            $altura = $this->objModelModelo
+                ->query($sqlAltura)
+                ->fetchAll(\PDO::FETCH_OBJ);
+
+            // Busca todos os calcados
+            $sqlCalcado = "SELECT calcado FROM modelo GROUP BY calcado ORDER BY calcado ASC";
+            $calcado = $this->objModelModelo
+                ->query($sqlCalcado)
+                ->fetchAll(\PDO::FETCH_OBJ);
+
         }
 
         // Dados da view
         $dados = [
             "modelos" => $modelos,
+            "etnias" => $etinia,
+            "manequins" => $manequim,
+            "alturas" => $altura,
+            "calcados" => $calcado,
             "js" => [
                 "modulos" => ["Modelo"]
             ]

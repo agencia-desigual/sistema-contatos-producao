@@ -30,8 +30,16 @@
 
                     <div class="row">
 
+                        <!-- NOME -->
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input type="text" name="nome" class="form-control" value="<?= $nota->nome ?>" required="">
+                            </div>
+                        </div>
+
                         <!-- EMPRESA -->
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label>Empresa</label>
                                 <select name="id_cliente" class="form-control" required="">
@@ -43,19 +51,43 @@
                             </div>
                         </div>
 
+                        <!-- PRODUTO -->
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label>Produto</label>
+                                <input type="text" name="produto" class="form-control" value="<?= $nota->produto ?>">
+                            </div>
+                        </div>
+
                         <!-- DATA -->
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label>Data</label>
                                 <input type="date" name="data" class="form-control" required="" value="<?= $nota->data ?>" >
                             </div>
                         </div>
 
+                        <!-- CARTAO -->
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label>Cartão</label>
+                                <input type="text" name="cartao" class="form-control" value="<?= $nota->cartao ?>">
+                            </div>
+                        </div>
+
                         <!-- VALOR -->
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label>Valor</label>
                                 <input type="tel" name="valor" class="form-control maskValor" required="" value="<?= $nota->valor ?>">
+                            </div>
+                        </div>
+
+                        <!-- DESCRICAO -->
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <label>Descrição</label>
+                                <textarea name="descricao" rows="5" class="form-control"><?= $nota->descricao ?></textarea>
                             </div>
                         </div>
 

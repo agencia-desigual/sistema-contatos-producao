@@ -64,9 +64,13 @@ class Financeiro extends Controller
 
             // Monta a array de insert
             $salva = [
+                "nome" => $post['nome'],
                 "id_cliente" => $post['id_cliente'],
-                "valor" => $post['valor'],
-                "data" => $post['data']
+                "produto" => $post['produto'],
+                "data" => $post['data'],
+                "cartao" => $post['cartao'],
+                "descricao" => $post['descricao'],
+                "valor" => $post['valor']
             ];
 
             // Verifica se informou o arquivo
@@ -179,6 +183,10 @@ class Financeiro extends Controller
             $update = [
                 "id_cliente" => (!empty($post['id_cliente']) ? $post['id_cliente'] : $nota->id_cliente),
                 "valor" => (!empty($post['valor']) ? $post['valor'] : $nota->valor),
+                "nome" => (!empty($post['nome']) ? $post['nome'] : $nota->nome),
+                "produto" => (!empty($post['produto']) ? $post['produto'] : $nota->produto),
+                "cartao" => (!empty($post['cartao']) ? $post['cartao'] : $nota->cartao),
+                "descricao" => (!empty($post['descricao']) ? $post['descricao'] : $nota->descricao),
                 "data" => (!empty($post['data']) ? $post['data'] : $nota->data),
             ];
 
